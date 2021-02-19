@@ -1,0 +1,9 @@
+<html>
+<head>
+  <title>Hello/Index</title>
+</head>
+<body>
+  <h1>Blade/Index</h1>
+  <p>{{$msg}}</p>
+</body>
+</html>
