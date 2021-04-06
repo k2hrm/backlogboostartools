@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::post('/settings/edit', 'App\Http\Controllers\SettingsController@store');
 
 Route::get('/settings', function () {
-    $settings = Setting::orderBy('created_at','asc')->get();    
+    $settings = Setting::where('user_id',Auth::user()->id)->get();    
     return view('/settings/list',[
         'settings'=>$settings
     ]);
