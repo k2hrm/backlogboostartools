@@ -33,13 +33,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
 Route::get('/aggregate', function() {
-   $settings = Setting::find('created_at','asc')->get();    
+   $settings = Setting::where('user_id',Auth::user()->id)->get();   
     return view('/aggregate/index',[
         'settings'=>$settings
     ]);
 });
 
-Route::post('/aggregate/result', function(Request $request) {
-    dd($request);
-     return view('/aggregate/result');
-});
+Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');

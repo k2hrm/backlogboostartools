@@ -26,8 +26,9 @@ class AggregateController extends Controller
         return view('aggregate/index');
     }
 
-    public function result()
+    public function result(Request $request)
     {
+        dd($request);
         return view('aggregate/result');
     }
 }
