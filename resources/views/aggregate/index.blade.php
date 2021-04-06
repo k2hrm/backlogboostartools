@@ -9,7 +9,6 @@
 			  <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
 			  <form action="{{ url('aggregate/result') }}" method="POST" class="form-horizontal">
          @csrf
-        <p>プロジェクトキー : <input type="text" name="projkey" /></p>
     <p>
       <label for="check_flex">期間指定</label>
        : 
@@ -66,7 +65,7 @@
    @foreach($settings as $setting)
         <input type="hidden" name="hostname" value="{{$setting->hostname}}">
         <input type="hidden" name="api_key" value="{{$setting->api_key}}">
-        <input type="hidden" name="proj_key" value="{{$setting->proj_key}}">
+        プロジェクトキー : {{$setting->proj_key}}<input type="hidden" name="proj_key" value="{{$setting->proj_key}}">
         <input type="hidden" name="bl_user_id" value="{{$setting->bl_user_id}}">
    @endforeach
     <p>

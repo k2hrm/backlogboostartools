@@ -28,7 +28,9 @@ class AggregateController extends Controller
 
     public function result(Request $request)
     {
-        dd($request);
-        return view('aggregate/result');
+        //dd($request);
+        $proj_key = $request->proj_key;
+        //dd($proj_key);
+        return view('aggregate/result',compact('proj_key'));
     }
 }
