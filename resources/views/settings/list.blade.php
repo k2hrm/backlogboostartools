@@ -14,7 +14,6 @@
                     </div>
                     @endif
                     <h1>設定</h1>
-                    <p><a href="{{ url('/') }}">戻る</a></p>
                     <h2>Backlog基本設定 <a href="settings/edit">編集</a></h2>
                     <ul>
                         @foreach($settings as $setting)
