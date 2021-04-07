@@ -9,16 +9,13 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
-                    <h1>MENU</h1>
+                    <h1>メニュー</h1>
                     <ul>
                         <li><a href="aggregate/">Backlog期間別集計</a></li>
-                        <li><a href="#">Backlog課題一斉送信</a></li>
                         <li><a href="settings/">設定</a></li>
                     </ul>
                 </div>
