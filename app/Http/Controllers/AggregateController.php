@@ -74,45 +74,36 @@ class AggregateController extends Controller
                 $result = array_merge($result, $json);
             }
         }
+        //Jsonから必要なデータを取得・格納
         $totalHours = 0;
-        echo "<table>";
-        echo '<tr class="subtitle">';
-        $header = '<th>バックログキー</th><th class="hours">実績時間<br />（h）</th>';
-
-        echo $header;
-        echo "</tr>";
-        $formatmaster = array();
+        $actualHours = 0;
+        $issueKeyAndHoursArr = [];
+        $issueKeyAndHoursArrs = [];
         foreach ($result as $value) {
-            $format = array();
-            $actualHours = 0;
-            $createdUser = "";
-            $useNameForcheck = substr($value["createdUser"]["name"], 0, 2);
-            $isSc = false;
-
-            if ($value["updated"] >= $from_date) { //
-                if ($value["created"] >= $from_date && $value["updated"] <= $to_date) {
+            if ($value["updated"] >= $from_date) {
+                if (
+                    $value["created"] >= $from_date
+                    && $value["updated"] <= $to_date
+                ) {
                     if ($value["actualHours"]) {
                         $actualHours = $value["actualHours"];
                     }
                 } else {
                     $actualHours = $this->getMonthlyHours($value["issueKey"], $from_date, $to_date, $apiKey, $hostname);
                 }
+                if ($value["created"] <= $to_date && $value["created"] >= $from_date || $actualHours > 0) {
+                }
             }
-
-            if ($value["created"] <= $to_date && $value["created"] >= $from_date || $actualHours > 0) {
-                echo "<tr>";
-                echo "<td>" . $value["issueKey"] . "</td>";
-                echo "<td>" . (string)$actualHours . "</td>";
-                echo "</tr>";
-            }
-            $totalHours += number_format($actualHours, 2);
+            array_push($issueKeyAndHoursArr, $value["issueKey"]);
+            array_push($issueKeyAndHoursArr, $actualHours);
+            array_push($issueKeyAndHoursArrs, $issueKeyAndHoursArr);
+            $totalHours += number_format($actualHours, 3);
+            $issueKeyAndHoursArr = [];
         }
-        echo "<tr>";
-        echo  "<td>計</td><td>" . (string)$totalHours . "</td>";
-        echo "</tr>";
-        echo "</table>";
-        $formattedjson = json_encode($formatmaster);
-        return view('aggregate/result', compact('proj_key'));
+        //dd($issueKeyAndHoursArrs);
+        return view('aggregate/result', compact('issueKeyAndHoursArrs'));
+        //dd($result);
+        //dd($totalHours);
     }
 
 
