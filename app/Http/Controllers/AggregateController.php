@@ -95,13 +95,26 @@ class AggregateController extends Controller
                 }
             }
             array_push($issueKeyAndHoursArr, $value["issueKey"]);
+            array_push($issueKeyAndHoursArr, $value["summary"]);
+            array_push($issueKeyAndHoursArr, $value["created"]);
+            array_push($issueKeyAndHoursArr, $value["updated"]);
             array_push($issueKeyAndHoursArr, $actualHours);
             array_push($issueKeyAndHoursArrs, $issueKeyAndHoursArr);
             $totalHours += number_format($actualHours, 3);
             $issueKeyAndHoursArr = [];
         }
+        $totalCol = [];
+        $space = '';
+        $totalChars = '合計';
+        array_push($totalCol, $space);
+        array_push($totalCol, $space);
+        array_push($totalCol, $space);
+        array_push($totalCol, $totalChars);
+        array_push($totalCol, $totalHours);
+        array_push($issueKeyAndHoursArrs, $totalCol);
+
         //dd($issueKeyAndHoursArrs);
-        return view('aggregate/result', compact('issueKeyAndHoursArrs'));
+        return view('aggregate/result', compact('issueKeyAndHoursArrs', 'proj_key', 'from_date', 'to_date'));
         //dd($result);
         //dd($totalHours);
     }
