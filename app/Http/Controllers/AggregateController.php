@@ -13,7 +13,6 @@ class AggregateController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -24,11 +23,6 @@ class AggregateController extends Controller
     public function index()
     {
         return view('aggregate/index');
-    }
-
-    public function usage()
-    {
-        return view('aggregate/usage');
     }
 
     public function result(Request $request)
@@ -42,10 +36,29 @@ class AggregateController extends Controller
         $today =  $request->perioddayto;
         $apiKey =  $request->api_key;
         $hostname =  $request->hostname;
+        $vip_issueType = $request->vip_issueType;
+        $vip_key = $request->vip_key;
+        $vip_summary = $request->vip_summary;
+        $vip_assigner = $request->vip_assigner;
+        $vip_status = $request->vip_status;
+        $vip_priority = $request->vip_priority;
+        $vip_component = $request->vip_component;
+        $vip_version = $request->vip_version;
+        $vip_milestone = $request->vip_milestone;
+        $vip_created = $request->vip_created;
+        $vip_startDate = $request->vip_startDate;
+        $vip_limitDate = $request->vip_limitDate;
+        $vip_estimatedHours = $request->vip_estimatedHours;
+        $vip_actualHours = $request->vip_actualHours;
+        $vip_updated = $request->vip_updated;
+        $vip_createdUser = $request->vip_createdUser;
+        $vip_fileAttachment = $request->vip_fileAttachment;
+        $vip_fileShared = $request->vip_fileShared;
         $proj_id = $this->getProjectIdFromKey($proj_key, $hostname, $apiKey);
         $from_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
         $to_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $tomonth, $today, $toyear));
         $from_date_for_api = date('Y-m-d', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
+
         $cnt = 0;
         $result = array();
         while (1) {
@@ -84,6 +97,55 @@ class AggregateController extends Controller
         $actualHours = 0;
         $issueKeyAndHoursArr = [];
         $issueKeyAndHoursArrs = [];
+        //ヘッダ行作成
+        $csvHeader = [];
+        $totalCol = [];
+        if ($vip_issueType === 'vip_issueType') {
+            array_push($csvHeader, "種別");
+            array_push($totalCol, "");
+        }
+        if ($vip_key === 'vip_key') {
+            array_push($csvHeader, "キー");
+            array_push($totalCol, "");
+        }
+        if ($vip_summary === 'vip_summary') {
+            array_push($csvHeader, "件名");
+            array_push($totalCol, "");
+        }
+        if ($vip_assigner === 'vip_assigner') {
+            array_push($csvHeader, "担当者");
+            array_push($totalCol, "");
+        }
+        if ($vip_status === 'vip_status') {
+            array_push($csvHeader, "状態");
+            array_push($totalCol, "");
+        }
+        if ($vip_priority === 'vip_priority') {
+            array_push($csvHeader, "優先度");
+            array_push($totalCol, "");
+        }
+        if ($vip_created === 'vip_created') {
+            array_push($csvHeader, "登録日");
+            array_push($totalCol, "");
+        }
+        if ($vip_startDate === 'vip_startDate') {
+            array_push($csvHeader, "開始日");
+            array_push($totalCol, "");
+        }
+        if ($vip_estimatedHours === 'vip_estimatedHours') {
+            array_push($csvHeader, "予定時間");
+            array_push($totalCol, "");
+        }
+        if ($vip_updated === 'vip_updated') {
+            array_push($csvHeader, "更新日");
+            array_push($totalCol, "");
+        };
+        if ($vip_createdUser === 'vip_createdUser') {
+            array_push($csvHeader, "登録者");
+            array_push($totalCol, "");
+        }
+        array_push($csvHeader, "実績時間集計結果(h)");
+        array_push($issueKeyAndHoursArrs, $csvHeader);
         foreach ($result as $value) {
             if ($value["updated"] >= $from_date) {
                 if (
@@ -99,24 +161,91 @@ class AggregateController extends Controller
                 if ($value["created"] <= $to_date && $value["created"] >= $from_date || $actualHours > 0) {
                 }
             }
+
             if ($actualHours > 0) {
-                array_push($issueKeyAndHoursArr, $value["issueKey"]);
-                array_push($issueKeyAndHoursArr, $value["summary"]);
-                array_push($issueKeyAndHoursArr, $value["created"]);
-                array_push($issueKeyAndHoursArr, $value["updated"]);
+                if ($vip_issueType === 'vip_issueType') {
+                    if ($value["issueType"]["name"]) {
+                        array_push($issueKeyAndHoursArr, $value["issueType"]["name"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_key === 'vip_key') {
+                    if ($value["issueKey"]) {
+                        array_push($issueKeyAndHoursArr, $value["issueKey"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_summary === 'vip_summary') {
+                    if ($value["summary"]) {
+                        array_push($issueKeyAndHoursArr, $value["summary"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_assigner === 'vip_assigner') {
+                    if ($value["assignee"]["name"]) {
+                        array_push($issueKeyAndHoursArr, $value["assignee"]["name"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_status === 'vip_status') {
+                    if ($value["status"]["name"]) {
+                        array_push($issueKeyAndHoursArr, $value["status"]["name"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_priority === 'vip_priority') {
+                    if ($value["priority"]["name"]) {
+                        array_push($issueKeyAndHoursArr, $value["priority"]["name"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_created === 'vip_created') {
+                    if ($value["created"]) {
+                        array_push($issueKeyAndHoursArr, $value["created"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_startDate === 'vip_startDate') {
+                    if ($value["startDate"]) {
+                        array_push($issueKeyAndHoursArr, $value["startDate"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_estimatedHours === 'vip_estimatedHours') {
+                    if ($value["estimatedHours"]) {
+                        array_push($issueKeyAndHoursArr, $value["estimatedHours"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
+                if ($vip_updated === 'vip_updated') {
+                    if ($value["updated"]) {
+                        array_push($issueKeyAndHoursArr, $value["updated"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                };
+                if ($vip_createdUser === 'vip_createdUser') {
+                    if ($value["createdUser"]["name"]) {
+                        array_push($issueKeyAndHoursArr, $value["createdUser"]["name"]);
+                    } else {
+                        array_push($issueKeyAndHoursArr, "");
+                    }
+                }
                 array_push($issueKeyAndHoursArr, $actualHours);
                 array_push($issueKeyAndHoursArrs, $issueKeyAndHoursArr);
             }
             $totalHours += number_format($actualHours, 3);
             $issueKeyAndHoursArr = [];
         }
-        $totalCol = [];
-        $space = '';
-        $totalChars = '合計';
-        array_push($totalCol, $space);
-        array_push($totalCol, $space);
-        array_push($totalCol, $space);
-        array_push($totalCol, $totalChars);
         array_push($totalCol, $totalHours);
         array_push($issueKeyAndHoursArrs, $totalCol);
 

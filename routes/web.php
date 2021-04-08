@@ -47,5 +47,8 @@ Route::get('/aggregate', function () {
         return view('/aggregate/nomember');
     }
 });
-Route::get('/aggregate/usage', [App\Http\Controllers\AggregateController::class, 'usage'])->name('usage');
+Route::get('/guide/aggregate', function () {
+    return view('/guide/aggregate');
+});
+
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
