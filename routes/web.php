@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Outputitem;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +27,10 @@ Route::post('/settings/edit', 'App\Http\Controllers\SettingsController@store');
 Route::get('/settings', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
+        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
         return view('/settings/list', [
-            'settings' => $settings
+            'settings' => $settings,
+            'outputitems' => $outputitems
         ]);
     } else {
         return view('/settings/nomember');
@@ -40,8 +43,10 @@ Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'e
 Route::get('/aggregate', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
+        $outputitems = Outputitem::where('user_id', Auth::user()->id->get());
         return view('/aggregate/member', [
-            'settings' => $settings
+            'settings' => $settings,
+            'outputitems' => $outputitems
         ]);
     } else {
         return view('/aggregate/nomember');
