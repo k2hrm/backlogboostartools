@@ -19,7 +19,7 @@
                     <h3>Backlog期間別集計</h3>
                     <p>Backlogの標準機能にはない、期間別の工数集計が簡単にできるツールです。 <a href="aggregate/">>>Go</a></p>
                     <h2>設定</h2>
-                    <p>設定情報を登録します。まずはここからBacklogのAPIトークン等を設定してください<a href="settings/">>>Go</a></p>
+                    <p>[メンバーのみ]設定情報を登録します。BacklogのAPIトークン等を設定してください<a href="settings/">>>Go</a></p>
                     </ul>
                 </div>
             </div>

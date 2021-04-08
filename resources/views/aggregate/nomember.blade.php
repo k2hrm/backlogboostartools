@@ -62,11 +62,23 @@
               ?>
             </select>
           </p>
-          <ul>
-            <li>プロジェクトキー : <input type="text" name="proj_key"></li>
-            <li>APIキー : <input type="text" name="proj_key"></li>
-            <li>ホスト名 : <input type="text" name="proj_key"></li>
-          </ul>
+          <table style="margin-bottom: 20px;">
+            <tr>
+              <th>プロジェクトキー</th>
+              <td><input type="text" name="proj_key"></li>
+              </td>
+            </tr>
+            <tr>
+              <th>APIキー</th>
+              <td><input type="text" name="proj_key">
+              </td>
+            </tr>
+            <tr>
+              <th>ホスト名</th>
+              <td><input type="text" name="proj_key">
+              </td>
+            </tr>
+          </table>
           <p>
             <input type="submit" value="確認">
           <p>メンバー登録すると、こんなことができます！</p>

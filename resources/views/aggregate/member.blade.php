@@ -65,7 +65,11 @@
           @foreach($settings as $setting)
           <input type="hidden" name="hostname" value="{{$setting->hostname}}">
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">
-          プロジェクトキー : <input type="text" name="proj_key">
+          プロジェクトキー : <select name="proj_key">
+            @foreach (explode(",",$setting->proj_key) as $pkey)
+            <option value="{{$pkey}}">{{$pkey}}</option>
+            @endforeach
+          </select>
           <input type="hidden" name="bl_user_id" value="{{$setting->bl_user_id}}">
           @endforeach
           <p>

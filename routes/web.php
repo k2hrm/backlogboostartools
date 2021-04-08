@@ -30,6 +30,7 @@ Route::get('/settings', function () {
             'settings' => $settings
         ]);
     } else {
+        return view('/settings/nomember');
     }
 });
 

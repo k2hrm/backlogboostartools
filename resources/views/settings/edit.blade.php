@@ -33,6 +33,9 @@
                     <th>APIキー</th>
                     <td><input type="text" name="api_key" class="form-control"></td>
                   </tr>
+                  <th>プロジェクトキー(カンマ区切り)</th>
+                  <td><input type="text" name="proj_key" class="form-control"></td>
+                  </tr>
                 </table>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
