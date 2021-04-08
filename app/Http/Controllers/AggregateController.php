@@ -26,6 +26,11 @@ class AggregateController extends Controller
         return view('aggregate/index');
     }
 
+    public function usage()
+    {
+        return view('aggregate/usage');
+    }
+
     public function result(Request $request)
     {
         $proj_key = $request->proj_key;
@@ -94,12 +99,14 @@ class AggregateController extends Controller
                 if ($value["created"] <= $to_date && $value["created"] >= $from_date || $actualHours > 0) {
                 }
             }
-            array_push($issueKeyAndHoursArr, $value["issueKey"]);
-            array_push($issueKeyAndHoursArr, $value["summary"]);
-            array_push($issueKeyAndHoursArr, $value["created"]);
-            array_push($issueKeyAndHoursArr, $value["updated"]);
-            array_push($issueKeyAndHoursArr, $actualHours);
-            array_push($issueKeyAndHoursArrs, $issueKeyAndHoursArr);
+            if ($actualHours > 0) {
+                array_push($issueKeyAndHoursArr, $value["issueKey"]);
+                array_push($issueKeyAndHoursArr, $value["summary"]);
+                array_push($issueKeyAndHoursArr, $value["created"]);
+                array_push($issueKeyAndHoursArr, $value["updated"]);
+                array_push($issueKeyAndHoursArr, $actualHours);
+                array_push($issueKeyAndHoursArrs, $issueKeyAndHoursArr);
+            }
             $totalHours += number_format($actualHours, 3);
             $issueKeyAndHoursArr = [];
         }

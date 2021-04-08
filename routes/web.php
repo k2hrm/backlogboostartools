@@ -24,20 +24,27 @@ Route::get('/', function () {
 Route::post('/settings/edit', 'App\Http\Controllers\SettingsController@store');
 
 Route::get('/settings', function () {
-    $settings = Setting::where('user_id', Auth::user()->id)->get();
-    return view('/settings/list', [
-        'settings' => $settings
-    ]);
+    if (Auth::check()) {
+        $settings = Setting::where('user_id', Auth::user()->id)->get();
+        return view('/settings/list', [
+            'settings' => $settings
+        ]);
+    } else {
+    }
 });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
 Route::get('/aggregate', function () {
-    $settings = Setting::where('user_id', Auth::user()->id)->get();
-    return view('/aggregate/index', [
-        'settings' => $settings
-    ]);
+    if (Auth::check()) {
+        $settings = Setting::where('user_id', Auth::user()->id)->get();
+        return view('/aggregate/member', [
+            'settings' => $settings
+        ]);
+    } else {
+        return view('/aggregate/nomember');
+    }
 });
-
+Route::get('/aggregate/usage', [App\Http\Controllers\AggregateController::class, 'usage'])->name('usage');
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');

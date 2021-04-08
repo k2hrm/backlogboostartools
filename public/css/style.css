@@ -15,6 +15,14 @@ th, td {
     padding: 5px;
 }
 
-h2 a {
+h1 a ,
+h2 a{
     font-size: 0.5em;
+}
+
+.bl-ag-usg img {
+    border: 1px #efefef solid;
+    padding: 15px;
+    width: 499px;
+    margin-bottom: 30px;
 }

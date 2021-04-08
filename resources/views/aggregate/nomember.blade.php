@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
       <h1>Backlog期間指定実績時間確認ツール</h1>
-      <p>プロジェクトごとの指定期間内での作業実績時間を集計します。</p>
+      <p>プロジェクトごとの指定期間内での作業実績時間を集計します。<a href="aggregate/usage">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
         <form action="{{ url('aggregate/result') }}" method="POST" class="form-horizontal">
           @csrf
@@ -62,14 +62,20 @@
               ?>
             </select>
           </p>
-          @foreach($settings as $setting)
-          <input type="hidden" name="hostname" value="{{$setting->hostname}}">
-          <input type="hidden" name="api_key" value="{{$setting->api_key}}">
-          プロジェクトキー : <input type="text" name="proj_key">
-          <input type="hidden" name="bl_user_id" value="{{$setting->bl_user_id}}">
-          @endforeach
+          <ul>
+            <li>プロジェクトキー : <input type="text" name="proj_key"></li>
+            <li>APIキー : <input type="text" name="proj_key"></li>
+            <li>ホスト名 : <input type="text" name="proj_key"></li>
+          </ul>
           <p>
             <input type="submit" value="確認">
+          <p>メンバー登録すると、こんなことができます！</p>
+          <ul>
+            <li>
+              プロジェクトキー、APIキー、ホスト名の保存、呼び出し
+            </li>
+          </ul>
+          <p><a href="register">メンバー登録する</a></p>
           </p>
         </form>
       </div>
