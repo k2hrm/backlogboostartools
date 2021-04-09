@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Outputitems;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -34,7 +35,10 @@ class SettingsController extends Controller
 
     public function edit(Request $request)
     {
-        return view('settings/edit');
+        $user_id = Auth::id();
+        $settings = Setting::find($user_id);
+        $outputitems = Outputitem::find($user_id);
+        return view('settings/edit', compact('settings', 'outputitems'));
     }
 
     public function store(Request $request)

@@ -43,7 +43,7 @@ Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'e
 Route::get('/aggregate', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
-        $outputitems = Outputitem::where('user_id', Auth::user()->id->get());
+        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
         return view('/aggregate/member', [
             'settings' => $settings,
             'outputitems' => $outputitems

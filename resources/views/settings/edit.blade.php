@@ -22,34 +22,34 @@
                 <table>
                   <tr>
                     <th>ユーザーID</th>
-                    <td><input type="text" name="bl_user_id" class="form-control"></td>
+                    <td><input type="text" name="bl_user_id" class="form-control" value="{{$settings->bl_user_id}}"></td>
                   </tr>
 
                   <tr>
+
                     <th>ホスト名</th>
-                    <td><input type="text" name="hostname" class="form-control"></td>
+                    <td><input type="text" name="hostname" class="form-control" value="{{$settings->hostname}}"></td>
                   </tr>
                   <tr>
                     <th>APIキー</th>
-                    <td><input type="text" name="api_key" class="form-control"></td>
+                    <td><input type="text" name="api_key" class="form-control" value="{{$settings->api_key}}"></td>
                   </tr>
                   <th>プロジェクトキー(カンマ区切り)</th>
-                  <td><input type="text" name="proj_key" class="form-control"></td>
+                  <td><input type="text" name="proj_key" class="form-control" value="{{$settings->proj_key}}"></td>
                   </tr>
                   <tr>
                     <th>プロジェクトキー(カンマ区切り)</th>
                     <td>
-                      <input type="checkbox" name="vip_issueType" id="vip_issueType" value="vip_issueType"><label for="vip_issueType">種別</label>
-                      <input type="checkbox" name="vip_key" id="vip_key" value="vip_key" checked="checked"><label for="vip_key">キー</label>
-                      <input type="checkbox" name="vip_summary" id="vip_summary" value="vip_summary"><label for="vip_summary">件名</label>
-                      <input type="checkbox" name="vip_assigner" id="vip_assigner" value="vip_assigner"><label for="vip_assigner">担当者</label>
-                      <input type="checkbox" name="vip_status" id="vip_status" value="vip_status"><label for="vip_status">状態</label>
-                      <input type="checkbox" name="vip_priority" id="vip_priority" value="vip_priority"><label for="vip_priority">優先度</label>
-                      <input type="checkbox" name="vip_created" id="vip_created" value="vip_created"><label for="vip_created">登録日</label>
-                      <input type="checkbox" name="vip_startDate" id="vip_startDate" value="vip_startDate"><label for="vip_startDate">開始日</label>
-                      <input type="checkbox" name="vip_estimatedHours" id="vip_estimatedHours" value="vip_estimatedHours"><label for="vip_estimatedHours">予定時間</label>
-                      <input type="checkbox" name="vip_updated" id="vip_updated" value="vip_updated"><label for="vip_updated">更新日</label>
-                      <input type="checkbox" name="vip_createdUser" id="vip_createdUser" value="vip_createdUser"><label for="vip_createdUser">登録者</label>
+                      <input type="checkbox" name="vip_issueType" id="vip_issueType" value="vip_issueType" @if($outputitems->vip_issueType) checked @endif><label for="vip_issueType">種別</label>
+                      <input type="checkbox" name="vip_key" id="vip_key" value="vip_key" @if($outputitems->vip_key) checked @endif><label for="vip_key">キー</label>
+                      <input type="checkbox" name="vip_summary" id="vip_summary" value="vip_summary" @if($outputitems->vip_summary) checked @endif><label for="vip_summary">件名</label>
+                      <input type="checkbox" name="vip_assigner" id="vip_assigner" value="vip_assigner" @if($outputitems->vip_assigner) checked @endif><label for="vip_assigner">担当者</label>
+                      <input type="checkbox" name="vip_status" id="vip_status" value="vip_status" @if($outputitems->vip_status) checked @endif><label for="vip_status">状態</label>
+                      <input type="checkbox" name="vip_priority" id="vip_priority" value="vip_priority" @if($outputitems->vip_priority) checked @endif><label for="vip_priority">優先度</label>
+                      <input type="checkbox" name="vip_created" id="vip_created" value="vip_created" @if($outputitems->vip_created) checked @endif><label for="vip_created">登録日</label>
+                      <input type="checkbox" name="vip_startDate" id="vip_startDate" value="vip_startDate" @if($outputitems->vip_startDate) checked @endif><label for="vip_startDate">開始日</label>
+                      <input type="checkbox" name="vip_updated" id="vip_updated" value="vip_updated" @if($outputitems->vip_updated) checked @endif>更新日</label>
+                      <input type="checkbox" name="vip_createdUser" id="vip_createdUser" value="vip_createdUser" @if($outputitems->vip_createdUser) checked @endif><label for="vip_createdUser">登録者</label>
                     </td>
                   </tr>
                 </table>
