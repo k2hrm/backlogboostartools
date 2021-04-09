@@ -40,20 +40,20 @@ Route::get('/settings', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
-Route::get('/aggregate', function () {
+Route::get('/bst', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/aggregate/member', [
+        return view('/bst/member', [
             'settings' => $settings,
             'outputitems' => $outputitems
         ]);
     } else {
-        return view('/aggregate/nomember');
+        return view('/bst/nomember');
     }
 });
-Route::get('/guide/aggregate', function () {
-    return view('/guide/aggregate');
+Route::get('/guide/bst', function () {
+    return view('/guide/bst');
 });
 
-Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
+Route::post('/bst/result', 'App\Http\Controllers\BstController@result');
