@@ -14,7 +14,7 @@
                 </tr>
                 @endforeach
             </table>
-            <p><a href="../aggregate/">戻る</a></p>
+            <p><a href="../bst/">戻る</a></p>
         </div>
     </div>
 </div>
