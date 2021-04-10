@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BstController extends Controller
+class KstController extends Controller
 {
     /**
      * Create a new controller instance.

@@ -8,7 +8,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @hasSection('title')
+    <title>@yield('title') | {{ config('app.title') }}</title>
+    @else
+    <title>{{ config('app.title') }}</title>
+    @endif
+
+    @hasSection('description')
+    <meta name="description" content="@yield('description')">
+    @else
+    <meta name="description" content="backlogの業務効率化ツールなどを提供しています">
+    @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

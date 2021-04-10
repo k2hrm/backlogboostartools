@@ -40,20 +40,54 @@ Route::get('/settings', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
-Route::get('/bst', function () {
+Route::get('/kst', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/bst/member', [
+        return view('/kst/member', [
             'settings' => $settings,
             'outputitems' => $outputitems
         ]);
     } else {
-        return view('/bst/nomember');
+        return view('/kst/nomember');
     }
 });
-Route::get('/guide/bst', function () {
-    return view('/guide/bst');
+Route::get('/ist', function () {
+    if (Auth::check()) {
+        $settings = Setting::where('user_id', Auth::user()->id)->get();
+        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+        return view('/ist/member', [
+            'settings' => $settings,
+            'outputitems' => $outputitems
+        ]);
+    } else {
+        return view('/ist/nomember');
+    }
+});
+Route::get('/nst', function () {
+    if (Auth::check()) {
+        $settings = Setting::where('user_id', Auth::user()->id)->get();
+        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+        return view('/nst/member', [
+            'settings' => $settings,
+            'outputitems' => $outputitems
+        ]);
+    } else {
+        return view('/nst/nomember');
+    }
 });
 
-Route::post('/bst/result', 'App\Http\Controllers\BstController@result');
+
+Route::get('/guide/kst', function () {
+    return view('/guide/kst');
+});
+Route::get('/guide/ist', function () {
+    return view('/guide/ist');
+});
+Route::get('/guide/nst', function () {
+    return view('/guide/nst');
+});
+
+Route::post('/kst/result', 'App\Http\Controllers\KstController@result');
+
+Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');
