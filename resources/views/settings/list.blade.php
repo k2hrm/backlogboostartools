@@ -15,51 +15,71 @@
                     @endif
                     <h1>設定</h1>
                     <h2>Backlog基本設定 <a href="settings/edit">編集</a></h2>
-                    <ul>
+                    @if(count($settings) === 0)
+                    まだ設定されていません。<a href="settings/edit">こちら</a>から設定してください。
+                    @else
+                    <table>
                         @foreach($settings as $setting)
-                        <li>ホスト名 : {{$setting->hostname}}</li>
-                        <li>APIキー : {{$setting->api_key}}</li>
-                        <li>ユーザーID : {{$setting->bl_user_id}}</li>
-                        <li>プロジェクトキー : {{$setting->proj_key}}</li>
-                        <li>出力項目 :
-                            @foreach($outputitems as $outputitem)
-                            @if($outputitem->vip_issueType)
-                            種別
-                            @endif
-                            @if($outputitem->vip_key)
-                            キー
-                            @endif
-                            @if($outputitem->vip_summary)
-                            件名
-                            @endif
-                            @if($outputitem->vip_assigner)
-                            担当者
-                            @endif
-                            @if($outputitem->vip_status)
-                            状態
-                            @endif
-                            @if($outputitem->vip_priority)
-                            優先度
-                            @endif
-                            @if($outputitem->vip_created)
-                            登録日
-                            @endif
-                            @if($outputitem->vip_startDate)
-                            開始日
-                            @endif
-                            @if($outputitem->vip_estimatedHours)
-                            予定時間
-                            @endif
-                            @if($outputitem->vip_updated)
-                            更新日
-                            @endif
-                            @if($outputitem->vip_createdUser)
-                            登録者
-                            @endif
-                            @endforeach
-                        </li>
+                        <tr>
+                            <th>ホスト名</th>
+                            <td>{{$setting->hostname}}</td>
+                        </tr>
+                        <tr>
+                            <th>APIキー</th>
+                            <td>{{$setting->api_key}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>ユーザーID </th>
+                            <td> {{$setting->bl_user_id}}</td>
+                        </tr>
+                        <tr>
+                            <th>プロジェクトキー</th>
+                            <td>{{$setting->proj_key}}</td>
+                        </tr>
+                        <tr>
+                            <th>出力項目</th>
+                            <td>
+                                @foreach($outputitems as $outputitem)
+                                @if($outputitem->vip_issueType)
+                                種別
+                                @endif
+                                @if($outputitem->vip_key)
+                                キー
+                                @endif
+                                @if($outputitem->vip_summary)
+                                件名
+                                @endif
+                                @if($outputitem->vip_assigner)
+                                担当者
+                                @endif
+                                @if($outputitem->vip_status)
+                                状態
+                                @endif
+                                @if($outputitem->vip_priority)
+                                優先度
+                                @endif
+                                @if($outputitem->vip_created)
+                                登録日
+                                @endif
+                                @if($outputitem->vip_startDate)
+                                開始日
+                                @endif
+                                @if($outputitem->vip_estimatedHours)
+                                予定時間
+                                @endif
+                                @if($outputitem->vip_updated)
+                                更新日
+                                @endif
+                                @if($outputitem->vip_createdUser)
+                                登録者
+                                @endif
+                                @endforeach
+                            </td>
+                        </tr>
                         @endforeach
-                    </ul>
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>

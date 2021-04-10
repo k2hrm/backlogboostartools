@@ -7,6 +7,8 @@
       <h1>Backlog期間指定実績時間確認ツール</h1>
       <p>プロジェクトごとの指定期間内での作業実績時間を集計します。<a href="guide/bst">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
+        @if(count($settings) > 0)
+
         <form action="{{ url('bst/result') }}" method="POST" class="form-horizontal">
           @csrf
           <table style="margin-bottom: 10px;">
@@ -101,6 +103,9 @@
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">
           <input type="submit" value="確認">
         </form>
+        @else
+        <p>Backlogの情報が設定されていません。<a href="settings/edit">こちら</a>から設定してください</p>
+        @endif
       </div>
     </div>
   </div>
