@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <img src="{{ url('/img/boo_logo.png') }}" style="margin-right: 8px;" />
+                <img src="{{ url('/img/boo_logo2.png') }}" style="margin-right: 8px;" />
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
