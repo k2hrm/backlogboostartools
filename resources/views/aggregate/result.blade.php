@@ -33,7 +33,7 @@
                 などのお問い合わせはメールkatsu.home@gmail.comまで<br />
                 お気軽にお問い合わせください
             </section>
-            <p><a href="../kst/">戻る</a></p>
+            <p><a href="../aggregate/">戻る</a></p>
         </div>
     </div>
 </div>

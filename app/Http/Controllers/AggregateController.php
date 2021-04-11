@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KstController extends Controller
+class AggregateController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,7 +22,7 @@ class KstController extends Controller
      */
     public function index()
     {
-        return view('kst/index');
+        return view('aggregate/index');
     }
 
     public function result(Request $request)
@@ -250,7 +250,7 @@ class KstController extends Controller
         array_push($issueKeyAndHoursArrs, $totalCol);
 
         //dd($issueKeyAndHoursArrs);
-        return view('bst/result', compact('issueKeyAndHoursArrs', 'proj_key', 'from_date', 'to_date'));
+        return view('aggregate/result', compact('issueKeyAndHoursArrs', 'proj_key', 'from_date', 'to_date'));
         //dd($result);
         //dd($totalHours);
     }

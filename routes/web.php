@@ -40,16 +40,16 @@ Route::get('/settings', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
-Route::get('/kst', function () {
+Route::get('/aggregate', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/kst/member', [
+        return view('/aggregate/member', [
             'settings' => $settings,
             'outputitems' => $outputitems
         ]);
     } else {
-        return view('/kst/nomember');
+        return view('/aggregate/nomember');
     }
 });
 Route::get('/send', function () {
@@ -78,8 +78,8 @@ Route::get('/nst', function () {
 });
 
 
-Route::get('/guide/kst', function () {
-    return view('/guide/kst');
+Route::get('/guide/aggregate', function () {
+    return view('/guide/aggregate');
 });
 Route::get('/guide/send', function () {
     return view('/guide/send');
@@ -88,7 +88,7 @@ Route::get('/guide/nst', function () {
     return view('/guide/nst');
 });
 
-Route::post('/kst/result', 'App\Http\Controllers\KstController@result');
+Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
 Route::post('/send/result', 'App\Http\Controllers\SendController@result');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');

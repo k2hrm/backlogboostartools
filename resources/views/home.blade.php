@@ -16,7 +16,7 @@
                     </div>
                     @endif
                     <h2>期間集計ツール<span style="font-size: 0.6em;">(Period Aggregation Tool)</span></h2>
-                    <p>Backlogの標準機能にはない、期間指定しての工数集計が簡単にできるツールです。 <a href="kst/">>>Go</a></p>
+                    <p>Backlogの標準機能にはない、期間指定しての工数集計が簡単にできるツールです。 <a href="aggregate/">>>Go</a></p>
                     <h2>一斉送信ツール<span style="font-size: 0.6em;">(Send At Once Tool)</span></h2>
                     <p>同じ投稿をバックログの複数プロジェクトに一斉送信できるツールです。 <a href="send/">>>Go</a></p>
                     <h2>日報作成ツール<span style="font-size: 0.6em;">(Daily-report Creation Tool)</span></h2>
@@ -26,9 +26,9 @@
                     <h2>DOCS<span style="font-size: 0.6em;">(マニュアル)</span></h2>
                     <h3>Manuals</h3>
                     <ul>
-                        <li><a href="guide/kst">KST</a></li>
-                        <li><a href="guide/ist">IST</a></li>
-                        <li><a href="guide/nst">NST</a></li>
+                        <li><a href="guide/aggregate">期間集計ツール</a></li>
+                        <li><a href="guide/send">一斉送信ツール</a></li>
+                        <li><a href="guide/nst">日報作成ツール</a></li>
                     </ul>
                     <h3>Magazine</h3>
                     <p>第一回 : Backlog APIを使ってできること<a href="mag/1">>>Go</a></p>

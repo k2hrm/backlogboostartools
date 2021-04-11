@@ -4,10 +4,10 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
-      <h1>KST<span style="font-size: 0.6em;">(期間別集計ツール)</span></h1>
-      <p>プロジェクトごとの指定期間内での作業実績時間を集計します。<a href="{{ url('guide/kst') }}">使い方</a></p>
+      <h1>期間別集計ツール</span></h1>
+      <p>プロジェクトごとの指定期間内での作業実績時間を集計します。<a href="{{ url('guide/aggregate') }}">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
-        <form action="{{ url('kst/result') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('aggregate/result') }}" method="POST" class="form-horizontal">
           @csrf
           <p>
             <label for="check_flex">期間指定</label>
