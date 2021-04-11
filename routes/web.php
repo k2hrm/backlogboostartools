@@ -64,16 +64,16 @@ Route::get('/send', function () {
         return view('/send/nomember');
     }
 });
-Route::get('/nst', function () {
+Route::get('/dailyreport', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/nst/member', [
+        return view('/dailyreport/member', [
             'settings' => $settings,
             'outputitems' => $outputitems
         ]);
     } else {
-        return view('/nst/nomember');
+        return view('/dailyreport/nomember');
     }
 });
 
@@ -84,8 +84,8 @@ Route::get('/guide/aggregate', function () {
 Route::get('/guide/send', function () {
     return view('/guide/send');
 });
-Route::get('/guide/nst', function () {
-    return view('/guide/nst');
+Route::get('/guide/dailyreport', function () {
+    return view('/guide/dailyreport');
 });
 
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
