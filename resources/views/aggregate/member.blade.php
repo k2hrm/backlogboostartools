@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Backlog期間別集計ツール')
+@section('description', 'Backlogプロジェクトごとの指定期間内での作業実績時間を集計します。')
 @section('content')
 <div class="container">
   <div class="row">

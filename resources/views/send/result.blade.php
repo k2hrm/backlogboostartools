@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', '実行結果|Backlog一斉送信ツール')
+@section('description', '同じ投稿をBacklogの複数プロジェクトに一斉送信できるツールの実行結果です。')
 @section('content')
 <div class="container">
     <div class="row">

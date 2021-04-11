@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 mb-4 mt-2">
             <h1>日報作成結果</h1>
-            {{$userId}}さんの{{$f_tgt_day}}に対応したプロジェクト別のチケットです
+            {{$userId}}さんの@if($day==="this")本日@else昨日@endif対応したプロジェクト別のチケットです
             @foreach($projKeys as $projKey)
             <h2>{{$projKey}}</h2>
             <ul>

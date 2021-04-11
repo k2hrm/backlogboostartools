@@ -34,46 +34,50 @@ class DailyReportController extends Controller
         header('Content-Type: text/html; charset=UTF-8');
         $cnt = 0;
         if ($day == "this") {
-            $tgt_day = date("Y-m-d 00:00:00");
+            $tgt_day_from = new \DateTime("now 00:00:00", new \DateTimeZone('Asia/Tokyo'));
+            $tgt_day_from->setTimezone(new \DateTimeZone('UTC'));
+            $tgt_day_from = $tgt_day_from->format('Y-m-d\TH:i:s') . 'Z';
+            $tgt_day_to = new \DateTime("now 23:59:59", new \DateTimeZone('Asia/Tokyo'));
+            $tgt_day_to->setTimezone(new \DateTimeZone('UTC'));
+            $tgt_day_to = $tgt_day_to->format('Y-m-d\TH:i:s') . 'Z';
         } else {
-            $tgt_day = date('Y-m-d 00:00:00', strtotime('-1 day'));
+            $tgt_day_from = new \DateTime("-1 day 00:00:00", new \DateTimeZone('Asia/Tokyo'));
+            $tgt_day_from->setTimezone(new \DateTimeZone('UTC'));
+            $tgt_day_from = $tgt_day_from->format('Y-m-d\TH:i:s') . 'Z';
+            $tgt_day_to = new \DateTime("-1 day 23:59:59", new \DateTimeZone('Asia/Tokyo'));
+            $tgt_day_to->setTimezone(new \DateTimeZone('UTC'));
+            $tgt_day_to = $tgt_day_to->format('Y-m-d\TH:i:s') . 'Z';
         }
-        $result = array();
-        while (1) {
-            $offset = $cnt * 100;
-            $headers = array('Content-Type:application/x-www-form-urlencoded');
-            $context = array(
-                'http' => array(
-                    'method' => 'GET',
-                    'header' => $headers,
-                    'ignore_errors' => false
-                )
-            );
-            $url = 'https://' . $hostname . '/api/v2/users/' . $userId . '/activities?apiKey=' . $myApiKey;
-            $response = file_get_contents($url, false, stream_context_create($context));
-            # レスポンスを変数で扱えるように変換
-            $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
-            $json = json_decode($json, true);
-            if (count($json) < 100) {
-                $result = array_merge($result, $json);
-                break;
-            } else {
-                $cnt++;
-                $result = array_merge($result, $json);
-            }
-        }
+        $headers = array('Content-Type:application/x-www-form-urlencoded');
+        $context = array(
+            'http' => array(
+                'method' => 'GET',
+                'header' => $headers,
+                'ignore_errors' => false
+            )
+        );
+        $url = 'https://' . $hostname . '/api/v2/users/' . $userId . '/activities?apiKey=' . $myApiKey . '&count=100';;
+        $response = file_get_contents($url, false, stream_context_create($context));
+        # レスポンスを変数で扱えるように変換
+        $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+        $json = json_decode($json, true);
 
         $projKeys = [];
-        foreach ($result as $value) {
-            if ($value["created"] >= $tgt_day) {
+        foreach ($json as $value) {
+            if (
+                $value["created"] >= $tgt_day_from
+            ) {
                 $projKeys[] = $value["project"]["projectKey"];
             }
         }
         $projKeys = array_unique($projKeys);
 
         $issues = [];
-        foreach ($result as $value) {
-            if ($value["created"] >= $tgt_day) {
+        foreach ($json as $value) {
+            if (
+                $value["created"] >= $tgt_day_from &&
+                $value["created"] <= $tgt_day_to
+            ) {
                 $issue['key'] = $this->getKey($value["content"]["id"], $hostname, $myApiKey);
                 $issue['title'] = $value["content"]["summary"];
                 $issue['pjkey'] = $value["project"]["projectKey"];
@@ -85,9 +89,10 @@ class DailyReportController extends Controller
         foreach ($issues as $key => $value) {
             $sort[$key] = $value['pjkey'];
         }
-        array_multisort($sort, SORT_ASC, $issues);
-        $f_tgt_day = substr($tgt_day, 0, 10);
-        return view('dailyreport/result', compact('issues', 'projKeys', 'userId', 'f_tgt_day'));
+        if (count($issues) !== 0) {
+            array_multisort($sort, SORT_ASC, $issues);
+        }
+        return view('dailyreport/result', compact('issues', 'projKeys', 'userId', 'day'));
     }
 
     function myArrayUnique($array)
@@ -102,7 +107,6 @@ class DailyReportController extends Controller
     }
     function getKey($keyid, $host, $apiKey)
     {
-        $result = [];
         $headers = array('Content-Type:application/x-www-form-urlencoded');
         $context = array(
             'http' => array(
