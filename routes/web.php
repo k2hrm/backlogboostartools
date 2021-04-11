@@ -90,5 +90,6 @@ Route::get('/guide/dailyreport', function () {
 
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
 Route::post('/send/result', 'App\Http\Controllers\SendController@result');
+Route::post('/dailyreport/result', 'App\Http\Controllers\DailyReportController@result');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');
