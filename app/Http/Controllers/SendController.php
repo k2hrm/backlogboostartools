@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IstController extends Controller
+class SendController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,7 +22,7 @@ class IstController extends Controller
      */
     public function index()
     {
-        return view('ist/index');
+        return view('send/index');
     }
 
     public function result(Request $request)
@@ -53,7 +53,7 @@ class IstController extends Controller
             $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $apiKey . '&' . http_build_query($params, '', '&');
             $response = file_get_contents($url, false, stream_context_create($context));
         }
-        return view('ist/result');
+        return view('send/result');
     }
 
     function getIssueIdFromProjId($projId, $hostname, $apiKey)
@@ -68,7 +68,6 @@ class IstController extends Controller
         );
         $url = 'https://' . $hostname . '/api/v2/projects/' . $projId . '/issueTypes?apiKey=' . $apiKey;
         $response = file_get_contents($url, false, stream_context_create($context));
-        //echo $response;
         $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
         $json = json_decode($json, true);
         foreach ($json as $v) {
@@ -96,7 +95,6 @@ class IstController extends Controller
 
             $url = 'https://' . $hostname . '/api/v2/projects/' . $projectKey . '?apiKey=' . $apiKey;
             $response = file_get_contents($url, false, stream_context_create($context));
-            echo $response;
             $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
             $json = json_decode($json, true);
             if (count($json) < 100) {

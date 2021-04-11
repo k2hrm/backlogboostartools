@@ -4,10 +4,10 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
-      <h1>IST<span style="font-size: 0.6em;">(一斉送信ツール)</span></h1>
-      <p>休暇のお知らせなどの定型メッセージの一斉送信 <a href="{{ url('guide/ist') }}">>> 使い方</a></p>
+      <h1>一斉送信ツール</h1>
+      <p>休暇のお知らせなどの定型メッセージの一斉送信 <a href="{{ url('guide/send') }}">>> 使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
-        <form action="{{ url('ist/result') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('send/result') }}" method="POST" class="form-horizontal">
           @csrf
           <table>
             <tr>

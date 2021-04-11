@@ -52,16 +52,16 @@ Route::get('/kst', function () {
         return view('/kst/nomember');
     }
 });
-Route::get('/ist', function () {
+Route::get('/send', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/ist/member', [
+        return view('/send/member', [
             'settings' => $settings,
             'outputitems' => $outputitems
         ]);
     } else {
-        return view('/ist/nomember');
+        return view('/send/nomember');
     }
 });
 Route::get('/nst', function () {
@@ -81,14 +81,14 @@ Route::get('/nst', function () {
 Route::get('/guide/kst', function () {
     return view('/guide/kst');
 });
-Route::get('/guide/ist', function () {
-    return view('/guide/ist');
+Route::get('/guide/send', function () {
+    return view('/guide/send');
 });
 Route::get('/guide/nst', function () {
     return view('/guide/nst');
 });
 
 Route::post('/kst/result', 'App\Http\Controllers\KstController@result');
-Route::post('/ist/result', 'App\Http\Controllers\IstController@result');
+Route::post('/send/result', 'App\Http\Controllers\SendController@result');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');
