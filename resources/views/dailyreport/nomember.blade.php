@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
-      <h1>日報作成ツール</span></h1>
+      <h1>日報作成ツール<a href="guide/dailyreport">使い方</a></h1>
       <form action="{{ url('dailyreport/result') }}" method="post">
         @csrf
         <table>

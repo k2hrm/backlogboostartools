@@ -4,8 +4,8 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
-      <h1>IST<span style="font-size: 0.6em;">(一斉送信ツール)</span></h1>
-      <p>一斉送信します。<a href="guide/ist">使い方</a></p>
+      <h1>一斉送信ツール</h1>
+      <p>一斉送信します。<a href="guide/send">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
         @if(count($settings) > 0)
         <form action="{{ url('send/result') }}" method="POST" class="form-horizontal">
@@ -36,7 +36,7 @@
           </table>
           <input type="hidden" name="hostname" value="{{$setting->hostname}}">
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">
-          <input type="submit" value="確認">
+          <input type="submit" value="送信">
           @endforeach
         </form>
         @else
