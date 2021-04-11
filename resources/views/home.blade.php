@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>Backlog Boostar Tools</h1>
+                    <h1>Backlog Booster Tools</h1>
                 </div>
 
                 <div class="card-body">
