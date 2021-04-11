@@ -89,5 +89,6 @@ Route::get('/guide/nst', function () {
 });
 
 Route::post('/kst/result', 'App\Http\Controllers\KstController@result');
+Route::post('/ist/result', 'App\Http\Controllers\IstController@result');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');

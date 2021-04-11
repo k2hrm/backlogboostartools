@@ -22,7 +22,7 @@ class KstController extends Controller
      */
     public function index()
     {
-        return view('bst/index');
+        return view('kst/index');
     }
 
     public function result(Request $request)
