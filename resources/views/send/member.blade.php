@@ -8,7 +8,7 @@
       <p>一斉送信します。<a href="guide/send">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
         @if(count($settings) > 0)
-        <form action="{{ url('send/result') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('send/result') }}" method="POST" class="form-horizontal" onSubmit="return check()">
           @csrf
           <table>
             <tr>

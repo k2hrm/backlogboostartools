@@ -7,7 +7,7 @@
       <h1>一斉送信ツール</h1>
       <p>休暇のお知らせなどの定型メッセージの一斉送信 <a href="{{ url('guide/send') }}">>> 使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
-        <form action="{{ url('send/result') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('send/result') }}" method="POST" class="form-horizontal" onSubmit="return check()">
           @csrf
           <table>
             <tr>

@@ -40,16 +40,6 @@
         @endforeach
         <p><input type="submit" value="送信"></p>
       </form>
-      <p>メンバー登録すると、こんなことができます！</p>
-      <ul>
-        <li>
-          プロジェクトキー、APIキー、ホスト名、出力項目の保存、呼び出し
-        </li>
-      </ul>
-      <p><a href="register">メンバー登録する</a></p>
-      <p>すでにメンバー登録している方は<a href="login">ログイン</a>してください。</p>
-      </p>
-      </form>
       @else
       <p>Backlogの情報が設定されていません。<a href="settings/edit">こちら</a>から設定してください</p>
       @endif

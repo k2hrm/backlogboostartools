@@ -33,8 +33,6 @@ class DailyReportController extends Controller
         $day = $request->day;
         header('Content-Type: text/html; charset=UTF-8');
         $cnt = 0;
-        date_default_timezone_set("Asia/Tokyo");
-        $timestamp = strtotime('2021/1/22 10:20:30');
         if ($day == "this") {
             $tgt_day = date("Y-m-d 00:00:00");
         } else {

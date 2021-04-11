@@ -27,3 +27,24 @@ h2 a{
     width: 499px;
     margin-bottom: 30px;
 }
+
+.navbar-nav li {
+    padding-right: 10px;
+}
+
+.container.toppage h1 {
+    font-size: 0;
+    margin-bottom: 40px;
+}
+.container.toppage h1 img{
+    width: 580px;
+}
+
+.container.toppage h2{
+    font-size:x-large;
+}
+
+.container.toppage h2 span{
+    margin-left: 10px;
+    font-size:large;
+}
