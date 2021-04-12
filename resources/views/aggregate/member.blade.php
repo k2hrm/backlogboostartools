@@ -99,6 +99,7 @@
               </td>
             </tr>
           </table>
+          <p><a href="{{ url('settings/edit') }}">設定変更</a></p>
           <input type="hidden" name="bl_user_id" value="{{$setting->bl_user_id}}">
           <input type="hidden" name="hostname" value="{{$setting->hostname}}">
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">

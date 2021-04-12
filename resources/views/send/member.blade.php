@@ -14,12 +14,12 @@
           <table>
             <tr>
               <th><label for="title">タイトル</label></th>
-              <td><input type="text" name="title" id="title" style="width:400px;" /></td>
+              <td><input type="text" name="title" id="title" /></td>
             </tr>
             <tr>
               <th><label for="textarea">メッセージ本文:</label></th>
               <td>
-                <textarea name="description" id="description" style="width: 800px;" /></textarea>
+                <textarea name="description" id="description" /></textarea>
               </td>
             </tr>
             @foreach($settings as $setting)
@@ -35,6 +35,7 @@
             </tr>
             </tr>
           </table>
+          <p><a href="{{ url('settings/edit') }}">設定変更</a></p>
           <input type="hidden" name="hostname" value="{{$setting->hostname}}">
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">
           <input type="submit" value="送信">

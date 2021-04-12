@@ -13,12 +13,12 @@
           <table>
             <tr>
               <th><label for="title">タイトル</label></th>
-              <td><input type="text" name="title" id="title" style="width:400px;" /></td>
+              <td><input type="text" name="title" id="title" /></td>
             </tr>
             <tr>
               <th><label for="textarea">メッセージ本文:</label></th>
               <td>
-                <textarea name="description" id="description" style="width: 800px;" /></textarea>
+                <textarea name="description" id="description" /></textarea>
               </td>
             </tr>
             <tr>

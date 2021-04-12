@@ -30,8 +30,8 @@
             </table>
             <section>
                 独自の集計結果にカスタマイズしたい！<br />
-                ファイル形式で出力したい！<br />
-                などのお問い合わせはメールkatsu.home@gmail.comまで<br />
+                PDFやExcelのファイル形式で出力したい！<br />
+                などのお問い合わせはメールboolzjp@gmail.comまで<br />
                 お気軽にお問い合わせください
             </section>
             <p><a href="../aggregate/">戻る</a></p>
