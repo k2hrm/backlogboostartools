@@ -22,9 +22,9 @@
             <h2>▶︎マニュアル<span>DOCS</span></h2>
             <h3>Manuals</h3>
             <ul>
-                <li><a href="guide/aggregate">期間集計ツール</a></li>
-                <li><a href="guide/send">一斉送信ツール</a></li>
-                <li><a href="guide/dailyreport">日報作成ツール</a></li>
+                <li><a href="{{ url('guide/aggregate') }}">期間集計ツール</a></li>
+                <li><a href="{{ url('guide/send') }}">一斉送信ツール</a></li>
+                <li><a href="{{ url('guide/dailyreport') }}">日報作成ツール</a></li>
             </ul>
             <h3>Magazine</h3>
             <p>第一回 : Backlog APIを使ってできること<a href="mag/1">>>Go</a></p>

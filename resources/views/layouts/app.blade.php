@@ -53,9 +53,9 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li>@if(request()->is('*aggregate*') )期間集計ツール@else<a href="aggregate">期間集計ツール</a> @endif</li>
-                            <li>@if(request()->is('*send*'))一斉送信ツール@else<a href="send">一斉送信ツール</a>@endif</li>
-                            <li>@if(request()->is('*dailyreport*'))日報作成ツール@else<a href="dailyreport">日報作成ツール</a>@endif</li>
+                            <li>@if(request()->is('aggregate') )期間集計ツール@else<a href="{{ url('/aggregate') }}">期間集計ツール</a> @endif</li>
+                            <li>@if(request()->is('send'))一斉送信ツール@else<a href="{{ url('/send') }}">一斉送信ツール</a>@endif</li>
+                            <li>@if(request()->is('dailyreport'))日報作成ツール@else<a href="{{ url('/dailyreport') }}">日報作成ツール</a>@endif</li>
                         </ul>
                         @endif
 
