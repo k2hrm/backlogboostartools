@@ -16,11 +16,6 @@ th, td {
     padding: 5px;
 }
 
-h1 a ,
-h2 a{
-    font-size: 0.5em;
-}
-
 .bl-ag-usg img {
     border: 1px #efefef solid;
     padding: 15px;
@@ -33,10 +28,13 @@ h2 a{
 }
 
 .container.toppage h1 {
-    margin-bottom: 30px;
+    text-align: center;
 }
-.container.toppage h1 img{
-    width: 580px;
+.container.toppage img.topimg{
+    width: 300px;
+    text-align: center;
+    margin: 25px auto 40px;
+    display: block;
 }
 
 .container.toppage h2{
@@ -46,4 +44,8 @@ h2 a{
 .container.toppage h2 span{
     margin-left: 10px;
     font-size:large;
+}
+
+h1, .h1 {
+    font-size: 3rem;
 }
