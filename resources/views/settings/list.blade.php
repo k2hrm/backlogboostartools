@@ -14,12 +14,17 @@
                     </div>
                     @endif
                     <h1>設定</h1>
-                    <h2>Backlog基本設定 <a href="settings/edit">編集</a></h2>
+                    <h2>Backlog基本設定 </h2>
+                    <p><a href="settings/edit">編集</a></p>
                     @if(count($settings) === 0)
                     まだ設定されていません。<a href="settings/edit">こちら</a>から設定してください。
                     @else
                     <table>
                         @foreach($settings as $setting)
+                        <tr>
+                            <th>ユーザーID </th>
+                            <td> {{$setting->bl_user_id}}</td>
+                        </tr>
                         <tr>
                             <th>ホスト名</th>
                             <td>{{$setting->hostname}}</td>
@@ -27,11 +32,6 @@
                         <tr>
                             <th>APIキー</th>
                             <td>{{$setting->api_key}}</td>
-                        </tr>
-
-                        <tr>
-                            <th>ユーザーID </th>
-                            <td> {{$setting->bl_user_id}}</td>
                         </tr>
                         <tr>
                             <th>プロジェクトキー</th>

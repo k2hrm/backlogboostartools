@@ -13,7 +13,8 @@
             {{ session('status') }}
           </div>
           @endif
-          <h1>Backlog基本設定の編集 <a href="{{ url('settings/') }}">戻る</a></h1>
+          <h1>Backlog基本設定の編集 </h1>
+          <p><a href="{{ url('settings/') }}">設定トップへ</a></p>
           @include('common.errors')
           <form action="{{ url('settings/edit') }}" method="POST" class="form-horizontal">
             @csrf
