@@ -41,7 +41,7 @@
         <input type="hidden" name="hostname" value="{{$setting->hostname}}">
         <input type="hidden" name="api_key" value="{{$setting->api_key}}">
         @endforeach
-        <p><input type="submit" value="送信"></p>
+        <p><input type="submit" value="日報作成"></p>
       </form>
       @else
       <p>Backlogの情報が設定されていません。<a href="settings/edit">こちら</a>から設定してください</p>

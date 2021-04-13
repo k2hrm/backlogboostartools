@@ -33,7 +33,7 @@
             </td>
           </tr>
         </table>
-        <p><input type="submit" value="送信"></p>
+        <p><input type="submit" value="日報作成"></p>
       </form>
       <p>メンバー登録すると、こんなことができます！</p>
       <ul>
