@@ -11,7 +11,7 @@
             <p>プロジェクトごとの指定期間内での作業実績時間を集計します。 <a href=" aggregate/">>>Go</a></p>
             <h2>一斉送信ツール<span>Send At Once Tool</span></h2>
             <p>同じ投稿をバックログの複数プロジェクトに一斉送信できるツールです。 <a href="send/">>>Go</a></p>
-            <h2>日報作成ツール<span>Daily-report Creation Tool</span></h2>
+            <h2>日報作成ツール<span>Daily Report Generate Tool</span></h2>
             <p>Backlogの活動から、ユーザーの日報を生成するツールです。 <a href="dailyreport/">>>Go</a></p>
             <h2>設定<span>Settings</span></h2>
             <p>各種設定情報を登録します。<a href="settings/">>>Go</a></p>
