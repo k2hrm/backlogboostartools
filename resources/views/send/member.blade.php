@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
       <h1>一斉送信ツール</h1>
-      <p>休暇のお知らせなどの同じ投稿をBacklogの複数プロジェクトに一斉送信できるツールです。 <a href="guide/send">使い方</a></p>
+      <p>休暇のお知らせなどの同じ投稿をBacklogの複数プロジェクトに一斉送信できるツールです。 <a href="manuals/send">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
         @if(count($settings) > 0)
         <form action="{{ url('send/result') }}" method="POST" class="form-horizontal" onSubmit="return check()">

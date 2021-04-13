@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2">
       <h1>日報作成ツール</h1>
-      <p>Backlogの活動から、ユーザーの日報を生成するツールです。<a href="guide/dailyreport">使い方</a></p>
+      <p>Backlogの活動から、ユーザーの日報を生成するツールです。<a href="manuals/dailyreport">使い方</a></p>
       @if(count($settings) > 0)
       <form action="{{ url('dailyreport/result') }}" method="post">
         @csrf

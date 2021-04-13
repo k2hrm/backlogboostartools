@@ -40,9 +40,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 @if (! request()->is('/') )
-                <img src="{{ url('/img/booster_s.png') }}" style="margin-right: 8px;" />
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ url('/img/booster_s.png') }}" style="margin-right: 8px;" />
                 </a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -56,6 +55,9 @@
                         <li>@if(request()->is('aggregate') )期間集計ツール@else<a href="{{ url('/aggregate') }}">期間集計ツール</a> @endif</li>
                         <li>@if(request()->is('send'))一斉送信ツール@else<a href="{{ url('/send') }}">一斉送信ツール</a>@endif</li>
                         <li>@if(request()->is('dailyreport'))日報作成ツール@else<a href="{{ url('/dailyreport') }}">日報作成ツール</a>@endif</li>
+                        <li>@if(request()->is('settings'))設定@else<a href="{{ url('/settings') }}">設定</a>@endif</li>
+                        <li>@if(request()->is('manuals'))マニュアル@else<a href="{{ url('/manuals') }}">マニュアル</a>@endif</li>
+                        <li>@if(request()->is('contact'))お問い合わせ@else<a href="{{ url('/contact') }}">お問い合わせ</a>@endif</li>
                         @endif
                     </ul>
 
