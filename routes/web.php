@@ -77,15 +77,24 @@ Route::get('/dailyreport', function () {
     }
 });
 
+Route::get('/manuals', function () {
+    return view('/manuals/index');
+});
+Route::get('/manuals/aggregate', function () {
+    return view('/manuals/aggregate');
+});
+Route::get('/manuals/send', function () {
+    return view('/manuals/send');
+});
+Route::get('/manuals/dailyreport', function () {
+    return view('/manuals/dailyreport');
+});
+Route::get('/manuals/settings', function () {
+    return view('/manuals/settings');
+});
 
-Route::get('/guide/aggregate', function () {
-    return view('/guide/aggregate');
-});
-Route::get('/guide/send', function () {
-    return view('/guide/send');
-});
-Route::get('/guide/dailyreport', function () {
-    return view('/guide/dailyreport');
+Route::get('/contact', function () {
+    return view('/contact/index');
 });
 
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
