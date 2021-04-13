@@ -5,10 +5,19 @@
   <div class="row">
     <div class="col-lg-12 mb-4 mt-2 bl-ag-usg">
       <h1>期間指定実績時間確認ツール</h1>
-      <p>プロジェクトごとの指定期間内での作業実績時間を集計します。</p>
+      <p>Backlogプロジェクトごとの指定期間内での作業実績時間を集計します。</p>
+      <h2>設定項目を設定する</h2>
+      <p>メンバー登録済みの方は、設定画面で設定ただいた期間、プロジェクトキー、出力項目が選択できるようになっておりますので、こちらを設定してください。</p>
       <img src="{{ url('/img/manuals/aggregate/aggregate_member.png') }}" />
+      <p>メンバー登録しないでご利用される方は、期間、プロジェクトキー、出力項目、APIキー、ホスト名を入力してください。</p>
       <img src="{{ url('/img/manuals/aggregate/aggregate_nomember.png') }}" />
+      <h2>集計結果を確認する</h2>
+      <p>集計結果をご確認ください。</p>
       <img src="{{ url('/img/manuals/aggregate/aggregate_result.png') }}" />
+      <ul>
+        <li><a href="{{ url('/aggregate') }}">期間指定実績時間確認ツールを使ってみる</a></li>
+        <li><a href="{{ url('/manuals') }}">マニュアルTOPへ</a></li>
+      </ul>
     </div>
   </div>
 </div>
