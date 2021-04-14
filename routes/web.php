@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Outputitem;
+use App\Models\UserProject;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,9 +29,11 @@ Route::get('/settings', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
         return view('/settings/list', [
             'settings' => $settings,
-            'outputitems' => $outputitems
+            'outputitems' => $outputitems,
+            'user_projects' => $user_projects,
         ]);
     } else {
         return view('/settings/nomember');
@@ -102,3 +105,8 @@ Route::post('/send/result', 'App\Http\Controllers\SendController@result');
 Route::post('/dailyreport/result', 'App\Http\Controllers\DailyReportController@result');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');
+
+route::delete('/user_projects/{user_project}', function (UserProject $user_project) {
+    $user_project->delete();
+    return redirect('/settings');
+});

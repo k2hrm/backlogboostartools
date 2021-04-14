@@ -25,9 +25,7 @@
                     <th>ユーザーID</th>
                     <td><input type="text" name="bl_user_id" class="form-control" value="@if($settings) {{$settings->bl_user_id}} @endif"></td>
                   </tr>
-
                   <tr>
-
                     <th>ホスト名</th>
                     <td><input type="text" name="hostname" class="form-control" value="@if($settings) {{$settings->hostname}} @endif"></td>
                   </tr>
@@ -35,8 +33,21 @@
                     <th>APIキー</th>
                     <td><input type="text" name="api_key" class="form-control" value="@if($settings) {{$settings->api_key}} @endif"></td>
                   </tr>
-                  <th>プロジェクトキー(カンマ区切り)</th>
-                  <td><input type="text" name="proj_key" class="form-control" value="@if($settings) {{$settings->proj_key}} @endif"></td>
+                  <tr>
+                    <th>プロジェクト</th>
+                    <td>
+                      @if($user_projects)
+                      @foreach($user_projects as $user_project)
+                      <ul id="pj{{$loop->index}}">
+                        <li>キー: {{$user_project->project_key}}</li>
+                        <li>担当者: {{$user_project->asignee_id}}</li>
+                      </ul>
+                      @endforeach
+                      @else
+                      @endif
+                      <ul id="user_projects"></ul>
+                      <input type="button" value="追加" onclick="addpj();">
+                    </td>
                   </tr>
                   <tr>
                     <th>出力項目</th>
@@ -55,7 +66,16 @@
                   </tr>
                 </table>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-
+                <script>
+                  function addpj() {
+                    var likey = document.createElement("li");
+                    likey.innerHTML = 'キー:<input type="text" name="project_keys[]">';
+                    var liasaignee = document.createElement("li");
+                    liasaignee.innerHTML = '担当者:<input type="text" name="asignee_ids[]">';
+                    document.getElementById('user_projects').appendChild(likey);
+                    document.getElementById('user_projects').appendChild(liasaignee);
+                  }
+                </script>
 
               </div>
             </div>

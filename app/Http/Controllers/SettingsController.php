@@ -6,6 +6,8 @@ use App\Models\Outputitem;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Outputitems;
+use App\Models\Project;
+use App\Models\UserProject;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,17 +30,19 @@ class SettingsController extends Controller
      */
     public function index(Request $request)
     {
-        $settings = Setting::find($request->user_id);
-        $outputitems = Outputitem::find($request->user_id);
-        return view('settings/list', compact('settings', 'outputitems'));
+        $settings = Setting::where('user_id', $request->user_id)->first();
+        $outputitems = Outputitem::where('user_id', $request->user_id)->first();
+        $user_projects = UserProject::where('user_id', $request->user_id)->get();
+        return view('settings/list', compact('settings', 'outputitems', 'user_projects'));
     }
 
     public function edit(Request $request)
     {
         $user_id = Auth::id();
-        $settings = Setting::find($user_id);
-        $outputitems = Outputitem::find($user_id);
-        return view('settings/edit', compact('settings', 'outputitems'));
+        $settings = Setting::where('user_id', $user_id)->first();
+        $outputitems = Outputitem::where('user_id', $user_id)->first();
+        $user_projects = UserProject::where('user_id', $user_id)->get();
+        return view('settings/edit', compact('settings', 'outputitems', 'user_projects'));
     }
 
     public function store(Request $request)
@@ -55,18 +59,17 @@ class SettingsController extends Controller
         }
 
         // Eloquentモデル（登録処理）
-        $settings = Setting::find($request->user_id);
+        $settings = Setting::where('user_id', $request->user_id)->first();
         if ($settings === null) {
             $settings = new Setting;
         }
         $settings->user_id = $request->user_id;
         $settings->hostname = $request->hostname;
         $settings->api_key = $request->api_key;
-        $settings->proj_key = $request->proj_key;
         $settings->bl_user_id = $request->bl_user_id;
         $settings->save();
 
-        $outputitems = Outputitem::find($request->user_id);
+        $outputitems = Outputitem::where('user_id', $request->user_id)->first();
         if ($outputitems === null) {
             $outputitems = new Outputitem;
         }
@@ -128,6 +131,21 @@ class SettingsController extends Controller
         }
 
         $outputitems->save();
+        if ($request->project_keys) {
+            foreach ($request->project_keys as $pkey) {
+                $user_projects = new UserProject;
+                $user_projects->project_key = $pkey;
+                $user_projects->project_id = 0;
+                $user_projects->project_name = "";
+
+                foreach ($request->asignee_ids as $aid) {
+                    $user_projects->asignee_id = $aid;
+                    $user_projects->user_id = $request->user_id;
+                    $user_projects->save();
+                }
+            }
+        }
+
         return redirect('/settings');
     }
 }

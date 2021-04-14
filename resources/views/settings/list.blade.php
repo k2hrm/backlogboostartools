@@ -34,8 +34,23 @@
                             <td>{{$setting->api_key}}</td>
                         </tr>
                         <tr>
-                            <th>プロジェクトキー</th>
-                            <td>{{$setting->proj_key}}</td>
+                            <th>プロジェクト</th>
+                            <td>
+                                @if($user_projects)
+                                @foreach($user_projects as $user_project)
+                                <form action="{{ url('user_projects/'.$user_project->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <ul id="pj{{$loop->index}}">
+                                        <li>キー: {{$user_project->project_key}}</li>
+                                        <li>担当者: {{$user_project->asignee_id}}</li>
+                                    </ul>
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                                </form>
+                                @endforeach
+                                @else
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>出力項目</th>
