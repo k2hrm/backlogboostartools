@@ -49,3 +49,26 @@ th, td {
 h1, .h1 {
     font-size: 3rem;
 }
+
+.tool-list-wrapper {
+    margin-bottom: 40px;
+}
+
+a {
+color: #04b576;
+}
+
+a:hover {
+color: #05ce87;
+}
+
+.top-title-area {
+border: 5px solid #1f1f1f;
+border-radius: 8px;
+padding: 5px;
+margin: 0 0 20px;
+}
+
+.top-title-area h1 {
+    font-size: 1.5rem;
+}
