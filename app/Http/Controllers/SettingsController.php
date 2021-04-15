@@ -135,8 +135,6 @@ class SettingsController extends Controller
             foreach ($request->project_keys as $pkey) {
                 $user_projects = new UserProject;
                 $user_projects->project_key = $pkey;
-                $user_projects->project_id = 0;
-                $user_projects->project_name = "";
 
                 foreach ($request->asignee_ids as $aid) {
                     $user_projects->asignee_id = $aid;
@@ -151,8 +149,6 @@ class SettingsController extends Controller
                 $user_projects_old = UserProject::find($request->user_project_ids[$i]);
                 $user_projects_old->project_key = $request->project_keys_old[$i];
                 $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
-                $user_projects_old->project_name = "";
-                $user_projects_old->project_id = 0;
                 $user_projects_old->save();
             }
         }
