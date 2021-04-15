@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-12 mb-4 mt-2">
             <h1>一斉送信が完了しました。</h1>
-            <p><a href="../send/">戻る</a></p>
+            <p><a class="btn btn-primary" href="../send/">戻る</a></p>
         </div>
     </div>
 </div>

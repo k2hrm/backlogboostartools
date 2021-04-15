@@ -28,7 +28,7 @@
                 @endif
                 @endforeach
             </table>
-            <p><a href="../aggregate/">戻る</a></p>
+            <p><a class="btn btn-primary" href="../aggregate/">戻る</a></p>
         </div>
     </div>
 </div>

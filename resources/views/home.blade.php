@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="top-title-area">
                 <h1>Backlog Booster Tools</h1>
-                </a> <img src="{{ url('/img/booster.png') }}" class="topimg" />
+                <img src="{{ url('/img/booster.png') }}" class="topimg" />
             </div>
             <div class=" tool-list-wrapper">
                 <h2><a href=" aggregate/">期間集計ツール<span>Period Aggregation Tool</span></a></h2>
