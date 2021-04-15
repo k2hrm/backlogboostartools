@@ -27,9 +27,17 @@
               <th>プロジェクトキー</th>
               <td>
                 @foreach($user_projects as $user_project)
-                <input type="checkbox" name="proj_keys[]" value="{{$user_project->project_key}}" id="{{$user_project->project_key}}"><label for="{{$user_project->project_key}}">{{$user_project->project_key}}
-                  <input type="hidden" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->project_key}}">(担当者ID:{{$user_project->asignee_id}})
-                    @endforeach
+                <ul>
+                  <li><input type="checkbox" name="proj_keys[]" value="{{$user_project->project_key}}" id="{{$user_project->project_key}}"><label for="{{$user_project->project_key}}">{{$user_project->project_key}}</label>
+                  </li>
+                  <li><input type="checkbox" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->asignee_id}}">(担当者ID:{{$user_project->asignee_id}})</label>
+                  </li>
+                </ul>
+                <script>
+
+                </script>
+                @endforeach
+
               </td>
             </tr>
             </tr>

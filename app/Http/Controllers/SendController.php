@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserProject;
 use Illuminate\Http\Request;
 
 class SendController extends Controller
@@ -43,6 +44,7 @@ class SendController extends Controller
         $description = $request->description;
         $hostname = $request->hostname;
         $apiKey = $request->api_key;
+
         if ($projKeysArr) {
             for ($i = 0; $i <= count($projKeysArr) - 1; $i++) {
                 $projId = $this->getProjectIdFromKey(trim($projKeysArr[$i]), $hostname, $apiKey);
@@ -63,6 +65,7 @@ class SendController extends Controller
                     )
                 );
                 $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $apiKey . '&' . http_build_query($params, '', '&');
+
                 $response = file_get_contents($url, false, stream_context_create($context));
             }
         }
