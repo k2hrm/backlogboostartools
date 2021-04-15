@@ -33,29 +33,38 @@ class SendController extends Controller
         } else {
             $projKeysArr = $request->proj_keys;
         }
+        if (!$request->asignee_ids) {
+            $asigneeIds = $request->asignee_id;
+            $asigneeIdsArr = explode(",", $asigneeIds);
+        } else {
+            $asigneeIdsArr = $request->asignee_ids;
+        }
         $summary = $request->title;
         $description = $request->description;
         $hostname = $request->hostname;
         $apiKey = $request->api_key;
-        foreach ($projKeysArr as $projKey) {
-            $projId = $this->getProjectIdFromKey($projKey, $hostname, $apiKey);
-            $params = array(
-                'summary' => $summary,
-                'description' => $description,
-                'projectId'       => $projId,                                 // プロジェクトID
-                'issueTypeId'     => $this->getIssueIdFromProjId($projId, $hostname, $apiKey),                                 // 種別ID
-                'priorityId'      => 4,                                    // 優先度
-            );
-            $headers = array('Content-Type:application/x-www-form-urlencoded');
-            $context = array(
-                'http' => array(
-                    'method' => 'POST',
-                    'header' => $headers,
-                    'ignore_errors' => true
-                )
-            );
-            $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $apiKey . '&' . http_build_query($params, '', '&');
-            $response = file_get_contents($url, false, stream_context_create($context));
+        if ($projKeysArr) {
+            for ($i = 0; $i <= count($projKeysArr) - 1; $i++) {
+                $projId = $this->getProjectIdFromKey(trim($projKeysArr[$i]), $hostname, $apiKey);
+                $params = array(
+                    'summary' => $summary,
+                    'description' => $description,
+                    'projectId'       => $projId,
+                    'issueTypeId'     => $this->getIssueIdFromProjId($projId, $hostname, $apiKey),
+                    'priorityId'      => 4,
+                    'assigneeId' => trim($asigneeIdsArr[$i])
+                );
+                $headers = array('Content-Type:application/x-www-form-urlencoded');
+                $context = array(
+                    'http' => array(
+                        'method' => 'POST',
+                        'header' => $headers,
+                        'ignore_errors' => true
+                    )
+                );
+                $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $apiKey . '&' . http_build_query($params, '', '&');
+                $response = file_get_contents($url, false, stream_context_create($context));
+            }
         }
         return view('send/result');
     }
