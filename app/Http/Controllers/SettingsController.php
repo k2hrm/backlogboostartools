@@ -146,6 +146,17 @@ class SettingsController extends Controller
             }
         }
 
+        if ($request->user_project_ids > 0) {
+            for ($i = 0; $i <= count($request->user_project_ids) - 1; $i++) {
+                $user_projects_old = UserProject::find($request->user_project_ids[$i]);
+                $user_projects_old->project_key = $request->project_keys_old[$i];
+                $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
+                $user_projects_old->project_name = "";
+                $user_projects_old->project_id = 0;
+                $user_projects_old->save();
+            }
+        }
+
         return redirect('/settings');
     }
 }

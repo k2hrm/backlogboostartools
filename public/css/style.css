@@ -72,3 +72,7 @@ margin: 0 0 20px;
 .top-title-area h1 {
     font-size: 1.5rem;
 }
+
+.btn {
+    margin-bottom: 10px;
+}

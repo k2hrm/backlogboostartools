@@ -38,9 +38,10 @@
                     <td>
                       @if($user_projects)
                       @foreach($user_projects as $user_project)
-                      <ul id="pj{{$loop->index}}">
-                        <li>キー: {{$user_project->project_key}}</li>
-                        <li>担当者: {{$user_project->asignee_id}}</li>
+                      <ul>
+                        <li>キー: <input type="text" name="project_keys_old[]" value="{{$user_project->project_key}}"></li>
+                        <li>担当者: <input type="text" name="asignee_ids_old[]" value="{{$user_project->asignee_id}}"></li>
+                        <input type="hidden" name="user_project_ids[]" value="{{$user_project->id}}">
                       </ul>
                       @endforeach
                       @else
@@ -72,6 +73,9 @@
                     likey.innerHTML = 'キー:<input type="text" name="project_keys[]">';
                     var liasaignee = document.createElement("li");
                     liasaignee.innerHTML = '担当者:<input type="text" name="asignee_ids[]">';
+                    var upid = document.createElement("input");
+                    upid.innerHTML = '<input type="hidden" name="user_project_ids[]" value="">';
+
                     document.getElementById('user_projects').appendChild(likey);
                     document.getElementById('user_projects').appendChild(liasaignee);
                   }

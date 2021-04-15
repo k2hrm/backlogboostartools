@@ -15,7 +15,7 @@
                     @endif
                     <h1>設定</h1>
                     <h2>Backlog基本設定 </h2>
-                    <p><a href="settings/edit">編集</a></p>
+                    <button class="btn btn-primary" onclick="location.href='settings/edit'" ;>編集</button>
                     @if(count($settings) === 0)
                     まだ設定されていません。<a href="settings/edit">こちら</a>から設定してください。
                     @else
