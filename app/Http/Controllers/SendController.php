@@ -35,8 +35,10 @@ class SendController extends Controller
             $projKeysArr = $request->proj_keys;
         }
         if (!$request->asignee_ids) {
-            $asigneeIds = $request->asignee_id;
-            $asigneeIdsArr = explode(",", $asigneeIds);
+            $asigneeIdsArr = [];
+            for ($i = 0; $i < count($projKeysArr); $i++) {
+                $asigneeIdsArr[] = "";
+            }
         } else {
             $asigneeIdsArr = $request->asignee_ids;
         }

@@ -30,14 +30,6 @@
               </td>
             </tr>
             <tr>
-              <th>
-                担当者設定<br>(カンマ区切り)
-              </th>
-              <td>
-                <input type="text" name="asignee_id" id="asignee_id">
-              </td>
-            </tr>
-            <tr>
               <th>APIキー</th>
               <td><input type="text" name="api_key">
               </td>
