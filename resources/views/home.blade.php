@@ -30,7 +30,7 @@
                 <p>各ツールの操作マニュアルです。</p>
             </div>
             <div class="tool-list-wrapper">
-                <h2><a href="contact/">お問い合わせ<span>Contanct</span></a></h2>
+                <h2><a href="https://docs.google.com/forms/d/e/1FAIpQLScPyJopuGMfJMWsE6pLZ92Yr7dV7XDMzybJWnm6fwG5b5q1zQ/viewform">お問い合わせ<span>Contanct</span></a></h2>
                 <p>ご要望や不具合報告などはこちらまでお願い致します。</p>
             </div>
             <div>
