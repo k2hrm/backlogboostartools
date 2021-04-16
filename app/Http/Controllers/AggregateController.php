@@ -245,10 +245,10 @@ class AggregateController extends Controller
             }
             $totalHours += number_format($actualHours, 3);
             $issueKeyAndHoursArr = [];
+            $actualHours = 0;
         }
         array_push($totalCol, $totalHours);
         array_push($issueKeyAndHoursArrs, $totalCol);
-
         //dd($issueKeyAndHoursArrs);
         return view('aggregate/result', compact('issueKeyAndHoursArrs', 'proj_key', 'from_date', 'to_date'));
         //dd($result);

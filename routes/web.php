@@ -47,9 +47,11 @@ Route::get('/aggregate', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
         return view('/aggregate/member', [
             'settings' => $settings,
-            'outputitems' => $outputitems
+            'outputitems' => $outputitems,
+            'user_projects' => $user_projects,
         ]);
     } else {
         return view('/aggregate/nomember');

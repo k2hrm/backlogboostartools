@@ -74,8 +74,8 @@
               <td>
                 <select name="proj_key">
                   @foreach($settings as $setting)
-                  @foreach (explode(",",$setting->proj_key) as $pkey)
-                  <option value="{{$pkey}}">{{$pkey}}</option>
+                  @foreach($user_projects as $user_project)
+                  <option value="{{$user_project->project_key}}">{{$user_project->project_key}}</option>
                   @endforeach
                   @endforeach
                 </select>
