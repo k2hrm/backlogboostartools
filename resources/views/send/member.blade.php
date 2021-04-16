@@ -28,16 +28,12 @@
               <td>
                 @foreach($user_projects as $user_project)
                 <ul>
-                  <li><input type="checkbox" name="proj_keys[]" value="{{$user_project->project_key}}" id="{{$user_project->project_key}}"><label for="{{$user_project->project_key}}">{{$user_project->project_key}}</label>
-                  </li>
-                  <li><input type="checkbox" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->asignee_id}}">(担当者ID:{{$user_project->asignee_id}})</label>
+                  <li>
+                    <input type="checkbox" name="proj_keys[]" value="{{$user_project->project_key}}" id="{{$user_project->project_key}}" onclick="togglenext(event);">
+                    <input type="checkbox" class="chkboxhide" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->project_key}}">{{$user_project->project_key}}(担当者ID:{{$user_project->asignee_id}})</label>
                   </li>
                 </ul>
-                <script>
-
-                </script>
                 @endforeach
-
               </td>
             </tr>
             </tr>
@@ -48,6 +44,17 @@
           <input class="btn btn-primary" type="submit" value="送信">
           @endforeach
         </form>
+        <script>
+          function togglenext(e) {
+            var next = e.target.nextElementSibling;
+            if (e.target.checked === false) {
+              next.checked = false;
+            } else {
+              next.checked = true;
+            }
+          }
+        </script>
+
         @else
         <p>Backlogの情報が設定されていません。<a href="settings/edit">こちら</a>から設定してください</p>
         @endif
