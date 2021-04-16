@@ -24,7 +24,7 @@
             </tr>
             @foreach($settings as $setting)
             <tr>
-              <th>プロジェクトキー</th>
+              <th>プロジェクトキーと担当者ID</th>
               <td>
                 @foreach($user_projects as $user_project)
                 <ul>

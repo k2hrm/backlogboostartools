@@ -9,6 +9,11 @@
                 <h1>Backlog Booster Tools</h1>
                 <img src="{{ url('/img/booster.png') }}" class="topimg" />
             </div>
+            <div>
+                <p>開発へのご支援お願い致します(<a href="https://www.amazon.jp/hz/wishlist/ls/37NSY8BOC8IYJ?ref_=wl_share">Amazonウィッシュリスト</a>,
+                    <a href=" {{ asset('img/paypay_qr.jpg') }}" target="_blank">寄付(PayPay)</a>)
+                </p>
+            </div>
             <div class=" tool-list-wrapper">
                 <h2><a href=" aggregate/">期間集計ツール<span>Period Aggregation Tool</span></a></h2>
                 <p>プロジェクトごとの指定期間内での作業実績時間を集計します。</p>
@@ -32,14 +37,6 @@
             <div class="tool-list-wrapper">
                 <h2><a href="https://docs.google.com/forms/d/e/1FAIpQLScPyJopuGMfJMWsE6pLZ92Yr7dV7XDMzybJWnm6fwG5b5q1zQ/viewform">お問い合わせ<span>Contanct</span></a></h2>
                 <p>ご要望や不具合報告などはこちらまでお願い致します。</p>
-            </div>
-            <div>
-                <p>開発へのご支援お待ちしております！</p>
-                <ul>
-                    <li><a href="https://www.amazon.jp/hz/wishlist/ls/37NSY8BOC8IYJ?ref_=wl_share">ウィッシュリスト</a></li>
-                    <li><a href="https://qr.paypay.ne.jp/NZzwFFWOjw7LhMeq">PayPayで寄付</a></li>
-
-                </ul>
             </div>
         </div>
     </div>
