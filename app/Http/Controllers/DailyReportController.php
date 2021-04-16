@@ -56,7 +56,7 @@ class DailyReportController extends Controller
                 'ignore_errors' => false
             )
         );
-        $url = 'https://' . $hostname . '/api/v2/users/' . $userId . '/activities?apiKey=' . $myApiKey . '&count=100';;
+        $url = 'https://' . $hostname . '/api/v2/users/' . $userId . '/activities?apiKey=' . $myApiKey . '&count=100';
         $response = file_get_contents($url, false, stream_context_create($context));
         # レスポンスを変数で扱えるように変換
         $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
@@ -74,15 +74,18 @@ class DailyReportController extends Controller
 
         $issues = [];
         foreach ($json as $value) {
-            if (
-                $value["created"] >= $tgt_day_from &&
-                $value["created"] <= $tgt_day_to
-            ) {
-                $issue['key'] = $this->getKey($value["content"]["id"], $hostname, $myApiKey);
-                $issue['title'] = $value["content"]["summary"];
-                $issue['pjkey'] = $value["project"]["projectKey"];
-                $issues[] = $issue;
-                $issue = [];
+            if ($value["type"] == '8' || $value["type"] == '5') { //ファイルのアップロード(type=8) Wikiの更新(type=5)は除外
+            } else {
+                if (
+                    $value["created"] >= $tgt_day_from &&
+                    $value["created"] <= $tgt_day_to
+                ) {
+                    $issue['key'] = $this->getKey($value["content"]["id"], $hostname, $myApiKey);
+                    $issue['title'] = $value["content"]["summary"];
+                    $issue['pjkey'] = $value["project"]["projectKey"];
+                    $issues[] = $issue;
+                    $issue = [];
+                }
             }
         }
         $issues = $this->myArrayUnique($issues);
