@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="top-title-area">
-                <h1>Backlog Booster Tools</h1>
+                <h1>Backlog Boostar Tools</h1>
                 <img src="{{ url('/img/booster.png') }}" class="topimg" />
             </div>
             <div>
