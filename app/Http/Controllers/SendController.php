@@ -104,6 +104,24 @@ class SendController extends Controller
         return view('send/result');
     }
 
+    public function confirm(Request $request)
+    {
+        $settings = Setting::where('user_id', Auth::user()->id)->get();
+        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+        foreach ($user_projects as $user_project) {
+            if (!empty($user_project->asignee_id)) {
+                $userIdName[] = $user_project->asignee_id;
+                $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
+            }
+            $userIdNames[] = $userIdName;
+            $userIdName = [];
+        }
+        return view('send/confirm', [
+            'request' => $request,
+            'userIdNames' => $userIdNames
+        ]);
+    }
+
     function getIssueIdFromProjId($projId, $hostname, $apiKey)
     {
         $headers = array('Content-Type:application/x-www-form-urlencoded');

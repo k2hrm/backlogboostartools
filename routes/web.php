@@ -45,6 +45,7 @@ Route::get('/aggregate', function () {
     }
 });
 Route::get('/send', 'App\Http\Controllers\SendController@index');
+Route::post('/send/confirm', 'App\Http\Controllers\SendController@confirm');
 
 Route::get('/dailyreport', function () {
     if (Auth::check()) {
