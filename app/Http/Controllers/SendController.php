@@ -28,20 +28,9 @@ class SendController extends Controller
 
     public function result(Request $request)
     {
-        if (!$request->proj_keys) {
-            $projKeys = $request->proj_key;
-            $projKeysArr = explode(",", $projKeys);
-        } else {
-            $projKeysArr = $request->proj_keys;
-        }
-        if (!$request->asignee_ids) {
-            $asigneeIdsArr = [];
-            for ($i = 0; $i < count($projKeysArr); $i++) {
-                $asigneeIdsArr[] = "";
-            }
-        } else {
-            $asigneeIdsArr = $request->asignee_ids;
-        }
+        $projKeysArr = $request->project_keys;
+        $asigneeIdsArr = $request->asignee_ids;
+
         $summary = $request->title;
         $description = $request->description;
         $hostname = $request->hostname;

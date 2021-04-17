@@ -23,10 +23,12 @@
             </tr>
             <tr>
               <th>
-                プロジェクトキー<br>(カンマ区切り)
+                プロジェクトキー / 担当者
               </th>
               <td>
-                <input type="text" name="proj_key" id="proj_key">
+                <ul id="user_projects"></ul>
+                <input type="button" value="追加" onclick="addpj();">
+              </td>
               </td>
             </tr>
             <tr>
