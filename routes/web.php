@@ -44,20 +44,8 @@ Route::get('/aggregate', function () {
         return view('/aggregate/nomember');
     }
 });
-Route::get('/send', function () {
-    if (Auth::check()) {
-        $settings = Setting::where('user_id', Auth::user()->id)->get();
-        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
-        return view('/send/member', [
-            'settings' => $settings,
-            'outputitems' => $outputitems,
-            'user_projects' => $user_projects,
-        ]);
-    } else {
-        return view('/send/nomember');
-    }
-});
+Route::get('/send', 'App\Http\Controllers\SendController@index');
+
 Route::get('/dailyreport', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();

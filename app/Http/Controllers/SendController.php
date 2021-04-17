@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserProject;
+use App\Models\Setting;
+use App\Models\Outputitem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SendController extends Controller
 {
@@ -23,7 +26,18 @@ class SendController extends Controller
      */
     public function index()
     {
-        return view('send/index');
+        if (Auth::check()) {
+            $settings = Setting::where('user_id', Auth::user()->id)->get();
+            $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+            $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+            return view('/send/member', [
+                'settings' => $settings,
+                'outputitems' => $outputitems,
+                'user_projects' => $user_projects,
+            ]);
+        } else {
+            return view('/send/nomember');
+        }
     }
 
     public function result(Request $request)
