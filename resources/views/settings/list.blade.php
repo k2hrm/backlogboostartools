@@ -34,7 +34,14 @@
                             @method('DELETE')
                             <ul id="pj{{$loop->index}}">
                                 <li>キー: {{$user_project->project_key}}</li>
-                                <li>担当者: {{$user_project->asignee_id}}</li>
+                                <li>担当者: {{$user_project->asignee_id}}
+                                    @foreach($userIdNames as $userIdName)
+                                    @if($user_project->asignee_id === $userIdName[0])
+                                    {{$userIdName[1]}}
+                                    @break
+                                    @endif
+                                    @endforeach
+                                </li>
                             </ul>
                             <button type="submit" class="btn btn-danger">削除</button>
                         </form>
