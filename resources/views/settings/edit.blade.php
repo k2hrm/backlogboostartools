@@ -67,20 +67,6 @@
                   </tr>
                 </table>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                <script>
-                  function addpj() {
-                    var likey = document.createElement("li");
-                    likey.innerHTML = 'キー:<input type="text" name="project_keys[]">';
-                    var liasaignee = document.createElement("li");
-                    liasaignee.innerHTML = '担当者:<input type="text" name="asignee_ids[]">';
-                    var upid = document.createElement("input");
-                    upid.innerHTML = '<input type="hidden" name="user_project_ids[]" value="">';
-
-                    document.getElementById('user_projects').appendChild(likey);
-                    document.getElementById('user_projects').appendChild(liasaignee);
-                  }
-                </script>
-
               </div>
             </div>
             <div class="form-group">
