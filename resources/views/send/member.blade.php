@@ -9,7 +9,7 @@
       <p>休暇のお知らせなどの同じ投稿をBacklogの複数プロジェクトに一斉送信できるツールです。 <a href="manuals/send">使い方</a></p>
       <div style="border: 1px solid #c3bebe;padding: 30px;border-radius: 10px;">
         @if(count($settings) > 0)
-        <form action="{{ url('send/confirm') }}" method="POST" class="form-horizontal" onSubmit="return check()">
+        <form action="{{ url('send/confirm') }}" method="POST" class="form-horizontal">
           @csrf
           <table>
             <tr>
