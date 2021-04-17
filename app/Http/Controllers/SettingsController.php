@@ -20,7 +20,6 @@ class SettingsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -28,12 +27,20 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        $settings = Setting::where('user_id', $request->user_id)->first();
-        $outputitems = Outputitem::where('user_id', $request->user_id)->first();
-        $user_projects = UserProject::where('user_id', $request->user_id)->get();
-        return view('settings/list', compact('settings', 'outputitems', 'user_projects'));
+        if (Auth::check()) {
+            $settings = Setting::where('user_id', Auth::user()->id)->get();
+            $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+            $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+            return view('/settings/list', [
+                'settings' => $settings,
+                'outputitems' => $outputitems,
+                'user_projects' => $user_projects,
+            ]);
+        } else {
+            return view('/settings/nomember');
+        }
     }
 
     public function edit(Request $request)

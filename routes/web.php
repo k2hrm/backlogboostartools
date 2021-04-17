@@ -25,20 +25,7 @@ Route::get('/', function () {
 
 Route::post('/settings/edit', 'App\Http\Controllers\SettingsController@store');
 
-Route::get('/settings', function () {
-    if (Auth::check()) {
-        $settings = Setting::where('user_id', Auth::user()->id)->get();
-        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
-        return view('/settings/list', [
-            'settings' => $settings,
-            'outputitems' => $outputitems,
-            'user_projects' => $user_projects,
-        ]);
-    } else {
-        return view('/settings/nomember');
-    }
-});
+Route::get('/settings', 'App\Http\Controllers\SettingsController@index');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
