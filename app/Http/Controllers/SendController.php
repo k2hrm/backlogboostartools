@@ -30,14 +30,41 @@ class SendController extends Controller
             $settings = Setting::where('user_id', Auth::user()->id)->get();
             $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
             $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+            $userIdNames = [];
+            foreach ($user_projects as $user_project) {
+                if (!empty($user_project->asignee_id)) {
+                    $userIdName[] = $user_project->asignee_id;
+                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
+                }
+                $userIdNames[] = $userIdName;
+                $userIdName = [];
+            }
             return view('/send/member', [
                 'settings' => $settings,
                 'outputitems' => $outputitems,
                 'user_projects' => $user_projects,
+                'userIdNames' => $userIdNames
             ]);
         } else {
             return view('/send/nomember');
         }
+    }
+
+    function getUserNameFromId($userId, $hostname, $apiKey)
+    {
+        $headers = array('Content-Type:application/x-www-form-urlencoded');
+        $context = array(
+            'http' => array(
+                'method' => 'GET',
+                'header' => $headers,
+                'ignore_errors' => true
+            )
+        );
+        $url = 'https://' . $hostname . '/api/v2/users/' . $userId . '?apiKey=' . $apiKey;
+        $response = file_get_contents($url, false, stream_context_create($context));
+        $json = mb_convert_encoding($response, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+        $json = json_decode($json, true);
+        return $json["name"];
     }
 
     public function result(Request $request)

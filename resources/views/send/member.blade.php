@@ -30,7 +30,17 @@
                 <ul>
                   <li>
                     <input type="checkbox" name="project_keys[]" value="{{$user_project->project_key}}" id="{{$user_project->project_key}}" onclick="togglenext(event);">
-                    <input type="checkbox" class="chkboxhide" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->project_key}}">{{$user_project->project_key}}(担当者ID:{{$user_project->asignee_id}})</label>
+                    <input type="checkbox" class="chkboxhide" name="asignee_ids[]" value="{{$user_project->asignee_id}}" id="{{$user_project->asignee_id}}"><label for="{{$user_project->project_key}}">
+                      {{$user_project->project_key}}(担当者ID:{{$user_project->asignee_id}}
+                      担当者名:
+                      @foreach($userIdNames as $userIdName)
+                      @if($user_project->asignee_id === $userIdName[0])
+                      {{$userIdName[1]}}
+                      @break
+                      @endif
+                      @endforeach
+
+                      )</label>
                   </li>
                 </ul>
                 @endforeach
