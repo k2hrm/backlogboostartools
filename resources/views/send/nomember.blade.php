@@ -45,7 +45,7 @@
               </td>
             </tr>
           </table>
-          <input type="submit" value="送信">
+          <input type="submit" value="送信内容確認">
           <p>メンバー登録はいかがですか？</p>
           <p>メンバー登録すると、こんなことができます！</p>
           <ul>

@@ -51,7 +51,7 @@
           <p><a href="{{ url('settings/edit') }}">設定変更</a></p>
           <input type="hidden" name="hostname" value="{{$setting->hostname}}">
           <input type="hidden" name="api_key" value="{{$setting->api_key}}">
-          <input class="btn btn-primary" type="submit" value="送信">
+          <input class="btn btn-primary" type="submit" value="送信内容確認">
           @endforeach
         </form>
         <script>
