@@ -26,7 +26,10 @@
                 プロジェクトキー / 担当者
               </th>
               <td>
-                <ul id="user_projects"></ul>
+                <ul id="user_projects">
+                  <li>キー:<input type="text" name="project_keys[]"></li>
+                  <li>担当者:<input type="text" name="asignee_ids[]"></li>
+                </ul>
                 <input type="button" value="追加" onclick="addpj();">
               </td>
               </td>
