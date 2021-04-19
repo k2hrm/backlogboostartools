@@ -77,6 +77,9 @@ Route::get('/manuals/dailyreport', function () {
 Route::get('/manuals/settings', function () {
     return view('/manuals/settings');
 });
+Route::get('/tos/privacy', function () {
+    return view('/tos/privacy');
+});
 
 Route::get('/contact', function () {
     return view('/contact/index');

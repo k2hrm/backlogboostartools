@@ -30,10 +30,14 @@
                 <p>各ツールの操作マニュアルです。</p>
             </div>
             <div class="tool-list-wrapper">
+                <h2><a href="tos/privacy">プライバシーポリシー<br class="br-sp"><span>Privacy Policy</span></a></h2>
+                <p>ユーザー登録いただく際に収集する個人情報の扱いについての規程です。</p>
+            </div>
+            <div class="tool-list-wrapper">
                 <h2><a href="https://docs.google.com/forms/d/e/1FAIpQLScPyJopuGMfJMWsE6pLZ92Yr7dV7XDMzybJWnm6fwG5b5q1zQ/viewform">お問い合わせ<br class="br-sp"><span>Contanct</span></a></h2>
                 <p>ご要望や不具合報告などはこちらまでお願い致します。</p>
             </div>
-			            <div>
+            <div>
                 <p>開発へのご支援お願い致します(<a href="https://www.amazon.jp/hz/wishlist/ls/37NSY8BOC8IYJ?ref_=wl_share">Amazonウィッシュリスト</a>,
                     <a href=" {{ asset('img/paypay_qr.jpg') }}" target="_blank">寄付(PayPay)</a>)
                 </p>
