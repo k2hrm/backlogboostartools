@@ -29,6 +29,8 @@ th, td {
 
 .container.toppage h1 {
     text-align: center;
+	font-size: 2.2em;
+	
 }
 .container.toppage img.topimg{
     width: 300px;
@@ -38,12 +40,40 @@ th, td {
 }
 
 .container.toppage h2{
-    font-size:x-large;
+	font-size: 1.1em;
+	font-weight: 600;
+	border-bottom: 2px dotted #000000;
+	padding-bottom: 10px;
+	margin-bottom: 10px;   
+	position: relative;
+    padding-left: 15px;
+}
+
+.container.toppage h2:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: solid 6px transparent;
+    border-left: solid 10px #05ce87;
+    top: 50%;
+    left: 0;
+    margin-top: -12px;
 }
 
 .container.toppage h2 span{
-    margin-left: 10px;
-    font-size:large;
+    margin-left: 8px;
+	font-size: 0.9em;
+	font-weight: normal;
+	color: #05ce87;
+}
+
+@media screen and (max-width: 650px){	
+  .br　{ display:none; }
+}
+
+@media screen and (max-width: 650px){	
+  .br　{ display:block; }
 }
 
 h1, .h1 {
@@ -55,22 +85,32 @@ h1, .h1 {
 }
 
 a {
-color: #04b576;
+color: #000000;
+text-decoration: none;
+	padding: 2px 8px;
 }
 
 a:hover {
-color: #05ce87;
+color: #FFFFFF !important;
+	background-color: #05ce87;
+	text-decoration: none;
+}
+
+a:hover span {
+color: #FFFFFF !important;
 }
 
 .top-title-area {
 border: 3px solid #1f1f1f;
 border-radius: 8px;
-padding: 5px;
-margin: 0 0 20px;
+padding: 25px;
+margin: 0 0 50px;
+
 }
 
 .top-title-area h1 {
     font-size: 1.5rem;
+		font-weight: 700;
 }
 
 .btn {
@@ -79,4 +119,8 @@ margin: 0 0 20px;
 
 .chkboxhide{
     display: none;
+}
+
+@media screen and (min-width: 768px){
+.br-sp {display: none; }
 }
