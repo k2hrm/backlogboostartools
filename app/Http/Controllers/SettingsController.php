@@ -79,9 +79,22 @@ class SettingsController extends Controller
         return view('settings/edit', compact('settings', 'outputitems', 'user_projects'));
     }
 
+    public function confirm(Request $request)
+    {
+        $userIdNames = [];
+        foreach ($request->asignee_ids_old as $asignee_id_old) {
+            if (!empty($asignee_id_old)) {
+                $userIdName[] = $asignee_id_old;
+                $userIdName[] = $this->getUserNameFromId($asignee_id_old, $request->hostname, $request->api_key);
+            }
+            $userIdNames[] = $userIdName;
+            $userIdName = [];
+        }
+        return view('settings/confirm', compact('userIdNames', 'request'));
+    }
+
     public function store(Request $request)
     {
-        //dd($request);
         $validator = Validator::make($request->all(), [
             'hostname' => 'required|max:255',
         ]);

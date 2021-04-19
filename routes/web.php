@@ -23,13 +23,15 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/settings/edit', 'App\Http\Controllers\SettingsController@store');
+Route::post('/settings/store', 'App\Http\Controllers\SettingsController@store');
 
 Route::get('/settings', 'App\Http\Controllers\SettingsController@index');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings-edit');
+Route::get('/settings/confirm', [App\Http\Controllers\SettingsController::class, 'confirm'])->name('settings-confirm');
+
 Route::get('/aggregate', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();

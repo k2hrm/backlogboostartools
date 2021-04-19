@@ -16,7 +16,7 @@
           <h1>Backlog基本設定の編集 </h1>
           <p><a href="{{ url('settings/') }}">設定トップへ</a></p>
           @include('common.errors')
-          <form action="{{ url('settings/edit') }}" method="POST" class="form-horizontal">
+          <form action="{{ url('settings/confirm') }}" method="GET" class="form-horizontal">
             @csrf
             <div class="form-group">
               <div class="col-sm-6">
@@ -72,7 +72,7 @@
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-6">
                 <button type="submit" class="btn btn-primary">
-                  保存
+                  内容確認
                 </button>
               </div>
             </div>
