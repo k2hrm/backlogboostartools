@@ -23,6 +23,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap-4.4.1.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTTHG4SPNH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DTTHG4SPNH');
+    </script>
 </head>
 
 <body>
