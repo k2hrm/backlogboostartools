@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Backlog基本設定')
+@section('description', 'Backlog基本設定を定義します。')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

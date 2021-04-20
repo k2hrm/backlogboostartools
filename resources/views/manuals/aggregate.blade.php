@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', '期間指定実績時間確認ツールのマニュアル')
+@section('description', 'Backlog基本設定を定義します。')
 @section('content')
 <div class="container">
   <div class="row">
