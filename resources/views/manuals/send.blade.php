@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', '一斉送信ツールのマニュアル')
+@section('description', 'Backlog 一斉送信ツールのマニュアルです。')
 @section('content')
 <div class="container">
   <div class="row">
