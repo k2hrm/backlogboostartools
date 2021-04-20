@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Backlog日報作成ツール')
+@section('description', 'Backlogの活動から、ユーザーの日報を生成するツールです。')
 @section('content')
 <div class="container">
   <div class="row">
