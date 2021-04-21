@@ -57,7 +57,6 @@
                         <li>@if(request()->is('aggregate') )期間集計ツール@else<a href="{{ url('/aggregate') }}">期間集計ツール</a> @endif</li>
                         <li>@if(request()->is('send'))一斉送信ツール@else<a href="{{ url('/send') }}">一斉送信ツール</a>@endif</li>
                         <li>@if(request()->is('dailyreport'))日報作成ツール@else<a href="{{ url('/dailyreport') }}">日報作成ツール</a>@endif</li>
-                        <li>@if(request()->is('settings'))設定@else<a href="{{ url('/settings') }}">設定</a>@endif</li>
                         <li>@if(request()->is('manuals'))マニュアル@else<a href="{{ url('/manuals') }}">マニュアル</a>@endif</li>
                         <li>@if(request()->is('contact'))お問い合わせ@else<a href="https://docs.google.com/forms/d/e/1FAIpQLScPyJopuGMfJMWsE6pLZ92Yr7dV7XDMzybJWnm6fwG5b5q1zQ/viewform">お問い合わせ</a>@endif</li>
                         @endif

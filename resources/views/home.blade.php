@@ -22,16 +22,8 @@
                 <p>Backlogの活動から、ユーザーの日報を生成するツールです。 </p>
             </div>
             <div class="tool-list-wrapper">
-                <h2><a href="settings/">設定<br class="br-sp"><span>Settings</span></a></h2>
-                <p>各種設定情報を登録します。</p>
-            </div>
-            <div class="tool-list-wrapper">
                 <h2><a href="manuals/">マニュアル<br class="br-sp"><span>Manuals</span></a></h2>
                 <p>各ツールの操作マニュアルです。</p>
-            </div>
-            <div class="tool-list-wrapper">
-                <h2><a href="tos/privacy">プライバシーポリシー<br class="br-sp"><span>Privacy Policy</span></a></h2>
-                <p>ユーザー登録いただく際に収集する個人情報の扱いについての規程です。</p>
             </div>
             <div class="tool-list-wrapper">
                 <h2><a href="https://docs.google.com/forms/d/e/1FAIpQLScPyJopuGMfJMWsE6pLZ92Yr7dV7XDMzybJWnm6fwG5b5q1zQ/viewform">お問い合わせ<br class="br-sp"><span>Contanct</span></a></h2>

@@ -45,9 +45,6 @@
           </tr>
         </table>
         <input type="submit" value="送信内容確認">
-        <p>メンバー登録すると、次回ログイン時に同じ設定を呼び出すことができます。</p>
-        <p><a href="register">メンバー登録する</a></p>
-        <p>すでにメンバー登録している方は<a href="login">ログイン</a>してください。</p>
     </div>
   </div>
 </div>
