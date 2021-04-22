@@ -26,28 +26,7 @@ class SendController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
-            $settings = Setting::where('user_id', Auth::user()->id)->get();
-            $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-            $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
-            $userIdNames = [];
-            foreach ($user_projects as $user_project) {
-                if (!empty($user_project->asignee_id)) {
-                    $userIdName[] = $user_project->asignee_id;
-                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
-                }
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
-            }
-            return view('/send/member', [
-                'settings' => $settings,
-                'outputitems' => $outputitems,
-                'user_projects' => $user_projects,
-                'userIdNames' => $userIdNames
-            ]);
-        } else {
-            return view('/send/nomember');
-        }
+        return view('/send/nomember');
     }
 
     function getUserNameFromId($userId, $hostname, $apiKey)
@@ -106,24 +85,11 @@ class SendController extends Controller
 
     public function confirm(Request $request)
     {
-        if (Auth::check()) {
-            $settings = Setting::where('user_id', Auth::user()->id)->get();
-            $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
-            foreach ($user_projects as $user_project) {
-                if (!empty($user_project->asignee_id)) {
-                    $userIdName[] = $user_project->asignee_id;
-                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
-                }
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
-            }
-        } else {
-            foreach ($request->asignee_ids as $asignee_id) {
-                $userIdName[] = $asignee_id;
-                $userIdName[] = $this->getUserNameFromId($asignee_id, $request->hostname, $request->api_key);
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
-            }
+        foreach ($request->asignee_ids as $asignee_id) {
+            $userIdName[] = $asignee_id;
+            $userIdName[] = $this->getUserNameFromId($asignee_id, $request->hostname, $request->api_key);
+            $userIdNames[] = $userIdName;
+            $userIdName = [];
         }
         return view('send/confirm', [
             'request' => $request,

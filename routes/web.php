@@ -33,33 +33,13 @@ Route::get('/settings/edit', [App\Http\Controllers\SettingsController::class, 'e
 Route::get('/settings/confirm', [App\Http\Controllers\SettingsController::class, 'confirm'])->name('settings-confirm');
 
 Route::get('/aggregate', function () {
-    if (Auth::check()) {
-        $settings = Setting::where('user_id', Auth::user()->id)->get();
-        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
-        return view('/aggregate/member', [
-            'settings' => $settings,
-            'outputitems' => $outputitems,
-            'user_projects' => $user_projects,
-        ]);
-    } else {
-        return view('/aggregate/nomember');
-    }
+    return view('/aggregate/nomember');
 });
 Route::get('/send', 'App\Http\Controllers\SendController@index');
 Route::post('/send/confirm', 'App\Http\Controllers\SendController@confirm');
 
 Route::get('/dailyreport', function () {
-    if (Auth::check()) {
-        $settings = Setting::where('user_id', Auth::user()->id)->get();
-        $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
-        return view('/dailyreport/member', [
-            'settings' => $settings,
-            'outputitems' => $outputitems
-        ]);
-    } else {
-        return view('/dailyreport/nomember');
-    }
+    return view('/dailyreport/nomember');
 });
 
 Route::get('/manuals', function () {
