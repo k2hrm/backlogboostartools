@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Setting;
 
 class DailyReportController extends Controller
 {
@@ -23,6 +26,21 @@ class DailyReportController extends Controller
     public function index()
     {
         return view('dailyreport/index');
+    }
+
+    public function refresh(Request $request)
+    {
+        Cookie::queue('api_key', $request->api_key, 10);
+        if (Auth::check()) {
+            $settings = Setting::where('user_id', Auth::user()->id)->get();
+            $api_key = Cookie::get('api_key');
+            return view('/dailyreport/member', [
+                'settings' => $settings,
+                'api_key' => $api_key
+            ]);
+        } else {
+            return view('/dailyreport/nomember');
+        }
     }
 
     public function result(Request $request)

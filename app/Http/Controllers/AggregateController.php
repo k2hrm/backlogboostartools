@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class AggregateController extends Controller
 {
@@ -22,6 +23,7 @@ class AggregateController extends Controller
      */
     public function index()
     {
+
         return view('aggregate/index');
     }
 
@@ -58,7 +60,7 @@ class AggregateController extends Controller
         $from_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
         $to_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $tomonth, $today, $toyear));
         $from_date_for_api = date('Y-m-d', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
-
+        Cookie::queue('api_key', $request->api_key, 10);
         $cnt = 0;
         $result = array();
         while (1) {

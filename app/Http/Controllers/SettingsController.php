@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Outputitem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
 use App\Models\Outputitems;
 use App\Models\Project;
@@ -82,6 +83,7 @@ class SettingsController extends Controller
             $userIdNames[] = $userIdName;
             $userIdName = [];
         }
+        Cookie::queue('api_key', $request->api_key, 10);
         return view('settings/confirm', compact('userIdNames', 'request'));
     }
 

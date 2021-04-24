@@ -97,11 +97,16 @@
               @endforeach
             </td>
           </tr>
+          <tr>
+            <th>APIキー</th>
+            <td>
+              <input type="text" name="api_key" value="{{$api_key}}">
+            </td>
+          </tr>
         </table>
         <p><a href="{{ url('settings/edit') }}">設定変更</a></p>
         <input type="hidden" name="bl_user_id" value="{{$setting->bl_user_id}}">
         <input type="hidden" name="hostname" value="{{$setting->hostname}}">
-        <input type="hidden" name="api_key" value="{{$setting->api_key}}">
         <input class="btn btn-primary" type="submit" value="確認">
       </form>
       @else

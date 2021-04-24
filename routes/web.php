@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 Route::get('/', function () {
     return view('home');
@@ -37,10 +38,12 @@ Route::get('/aggregate', function () {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
         $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+        $api_key = Cookie::get('api_key');
         return view('/aggregate/member', [
             'settings' => $settings,
             'outputitems' => $outputitems,
             'user_projects' => $user_projects,
+            'api_key' => $api_key,
         ]);
     } else {
         return view('/aggregate/nomember');
@@ -48,14 +51,17 @@ Route::get('/aggregate', function () {
 });
 Route::get('/send', 'App\Http\Controllers\SendController@index');
 Route::post('/send/confirm', 'App\Http\Controllers\SendController@confirm');
+Route::post('/send/refresh', 'App\Http\Controllers\SendController@refresh');
 
 Route::get('/dailyreport', function () {
     if (Auth::check()) {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+        $api_key = Cookie::get('api_key');
         return view('/dailyreport/member', [
             'settings' => $settings,
-            'outputitems' => $outputitems
+            'outputitems' => $outputitems,
+            'api_key' => $api_key
         ]);
     } else {
         return view('/dailyreport/nomember');
@@ -88,6 +94,7 @@ Route::get('/contact', function () {
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
 Route::post('/send/result', 'App\Http\Controllers\SendController@result');
 Route::post('/dailyreport/result', 'App\Http\Controllers\DailyReportController@result');
+Route::post('/dailyreport/refresh', 'App\Http\Controllers\DailyReportController@refresh');
 
 Route::get('/mag/1', [App\Http\Controllers\MagController::class, 'index'])->name('index');
 

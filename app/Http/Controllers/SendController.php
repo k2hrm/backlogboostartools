@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Outputitem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class SendController extends Controller
 {
@@ -31,19 +32,54 @@ class SendController extends Controller
             $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
             $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
             $userIdNames = [];
-            foreach ($user_projects as $user_project) {
-                if (!empty($user_project->asignee_id)) {
-                    $userIdName[] = $user_project->asignee_id;
-                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
+            $api_key = Cookie::get('api_key');
+            if ($api_key) {
+                foreach ($user_projects as $user_project) {
+                    if (!empty($user_project->asignee_id)) {
+                        $userIdName[] = $user_project->asignee_id;
+                        $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $api_key);
+                    }
+                    $userIdNames[] = $userIdName;
+                    $userIdName = [];
                 }
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
             }
             return view('/send/member', [
                 'settings' => $settings,
                 'outputitems' => $outputitems,
                 'user_projects' => $user_projects,
-                'userIdNames' => $userIdNames
+                'userIdNames' => $userIdNames,
+                'api_key' => $api_key
+            ]);
+        } else {
+            return view('/send/nomember');
+        }
+    }
+
+    public function refresh(Request $request)
+    {
+        Cookie::queue('api_key', $request->api_key, 10);
+        if (Auth::check()) {
+            $settings = Setting::where('user_id', Auth::user()->id)->get();
+            $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
+            $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+            $userIdNames = [];
+            $api_key = Cookie::get('api_key');
+            if ($api_key) {
+                foreach ($user_projects as $user_project) {
+                    if (!empty($user_project->asignee_id)) {
+                        $userIdName[] = $user_project->asignee_id;
+                        $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $api_key);
+                    }
+                    $userIdNames[] = $userIdName;
+                    $userIdName = [];
+                }
+            }
+            return view('/send/member', [
+                'settings' => $settings,
+                'outputitems' => $outputitems,
+                'user_projects' => $user_projects,
+                'userIdNames' => $userIdNames,
+                'api_key' => $api_key
             ]);
         } else {
             return view('/send/nomember');

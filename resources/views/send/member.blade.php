@@ -8,6 +8,7 @@
       <h1>一斉送信ツール</h1>
       <p>休暇のお知らせなどの同じ投稿をBacklogの複数プロジェクトに一斉送信できるツールです。 <a href="manuals/send">使い方</a></p>
       @if(count($settings) > 0)
+      @if($api_key)
       <form action="{{ url('send/confirm') }}" method="POST" class="form-horizontal">
         @csrf
         <table>
@@ -53,6 +54,14 @@
         <input class="btn btn-primary" type="submit" value="送信内容確認">
         @endforeach
       </form>
+      @else
+      APIキーを入力してください。
+      <form action="{{ url('send/refresh') }}" method="POST" class="form-horizontal">
+        @csrf
+        <input type="text" name="api_key">
+        <input class="btn btn-primary" type="submit" value="送信">
+      </form>
+      @endif
       <script>
         function togglenext(e) {
           var next = e.target.nextElementSibling;
