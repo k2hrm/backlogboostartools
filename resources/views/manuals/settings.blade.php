@@ -30,7 +30,10 @@
       <h2>確認画面</h2>
       <p>内容がよろしければ、保存を押してください。編集入力時に、担当者IDが不正だと、ここでエラーになります。</p>
       <img src="{{ url('/img/manuals/settings/settings_3.png') }}" />
-
+      <ul>
+        <li><a href="{{ url('/settings') }}">設定を使ってみる</a></li>
+        <li><a href="{{ url('/manuals') }}">マニュアルTOPへ</a></li>
+      </ul>
     </div>
   </div>
 </div>

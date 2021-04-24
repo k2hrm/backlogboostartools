@@ -87,6 +87,9 @@ Route::get('/manuals/dailyreport', function () {
 Route::get('/manuals/settings', function () {
     return view('/manuals/settings');
 });
+Route::get('/manuals/timeout', function () {
+    return view('/manuals/timeout');
+});
 Route::get('/tos/privacy', function () {
     return view('/tos/privacy');
 });
