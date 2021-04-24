@@ -28,21 +28,6 @@ class DailyReportController extends Controller
         return view('dailyreport/index');
     }
 
-    public function refresh(Request $request)
-    {
-        Cookie::queue('api_key', $request->api_key, 10);
-        if (Auth::check()) {
-            $settings = Setting::where('user_id', Auth::user()->id)->get();
-            $api_key = Cookie::get('api_key');
-            return view('/dailyreport/member', [
-                'settings' => $settings,
-                'api_key' => $api_key
-            ]);
-        } else {
-            return view('/dailyreport/nomember');
-        }
-    }
-
     public function result(Request $request)
     {
         $userId = $request->bl_user_id;

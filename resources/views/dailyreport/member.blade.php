@@ -8,7 +8,6 @@
       <h1>日報作成ツール</h1>
       <p>Backlogの活動から、ユーザーの日報を生成するツールです。<a href="manuals/dailyreport">使い方</a></p>
       @if(count($settings) > 0)
-      @if($api_key)
       <form action="{{ url('dailyreport/result') }}" method="post">
         @csrf
         @foreach($settings as $setting)
@@ -44,14 +43,6 @@
         @endforeach
         <p><input class="btn btn-primary" type="submit" value="日報作成"></p>
       </form>
-      @else
-      APIキーを入力してください。
-      <form action="{{ url('dailyreport/refresh') }}" method="POST" class="form-horizontal">
-        @csrf
-        <input type="text" name="api_key">
-        <input class="btn btn-primary" type="submit" value="送信">
-      </form>
-      @endif
       @else
       <p>Backlogの情報が設定されていません。<a href="settings/edit">こちら</a>から設定してください</p>
       @endif

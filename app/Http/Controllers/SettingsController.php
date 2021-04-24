@@ -69,22 +69,31 @@ class SettingsController extends Controller
         $settings = Setting::where('user_id', $user_id)->first();
         $outputitems = Outputitem::where('user_id', $user_id)->first();
         $user_projects = UserProject::where('user_id', $user_id)->get();
-        return view('settings/edit', compact('settings', 'outputitems', 'user_projects', 'request'));
+        $api_key = Cookie::get('api_key');
+        if ($api_key) {
+            return view('settings/edit', compact('settings', 'outputitems', 'user_projects', 'request'));
+        } else {
+            return redirect('timeout');
+        }
     }
 
     public function confirm(Request $request)
     {
-        $userIdNames = [];
-        foreach ($request->asignee_ids_old as $asignee_id_old) {
-            if (!empty($asignee_id_old)) {
-                $userIdName[] = $asignee_id_old;
-                $userIdName[] = $this->getUserNameFromId($asignee_id_old, $request->hostname, $request->api_key);
+        $api_key = Cookie::get('api_key');
+        if ($api_key) {
+            $userIdNames = [];
+            foreach ($request->asignee_ids_old as $asignee_id_old) {
+                if (!empty($asignee_id_old)) {
+                    $userIdName[] = $asignee_id_old;
+                    $userIdName[] = $this->getUserNameFromId($asignee_id_old, $request->hostname, $api_key);
+                }
+                $userIdNames[] = $userIdName;
+                $userIdName = [];
             }
-            $userIdNames[] = $userIdName;
-            $userIdName = [];
+            return view('settings/confirm', compact('userIdNames', 'request'));
+        } else {
+            return redirect('timeout');
         }
-        Cookie::queue('api_key', $request->api_key, 10);
-        return view('settings/confirm', compact('userIdNames', 'request'));
     }
 
     public function store(Request $request)

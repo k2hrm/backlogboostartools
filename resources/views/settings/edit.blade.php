@@ -58,10 +58,6 @@
                   <input type="checkbox" name="vip_createdUser" id="vip_createdUser" value="vip_createdUser" @if($outputitems && $outputitems->vip_createdUser) checked @endif><label for="vip_createdUser">登録者</label>
                 </td>
               </tr>
-              <tr>
-                <th>APIキー(※保存されません)</th>
-                <td><input type="text" name="api_key" class="form-control" value="@if($request) {{$request->api_key}} @endif"></td>
-              </tr>
             </table>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
           </div>

@@ -58,11 +58,15 @@ Route::get('/dailyreport', function () {
         $settings = Setting::where('user_id', Auth::user()->id)->get();
         $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
         $api_key = Cookie::get('api_key');
-        return view('/dailyreport/member', [
-            'settings' => $settings,
-            'outputitems' => $outputitems,
-            'api_key' => $api_key
-        ]);
+        if ($api_key) {
+            return view('/dailyreport/member', [
+                'settings' => $settings,
+                'outputitems' => $outputitems,
+                'api_key' => $api_key
+            ]);
+        } else {
+            return redirect('/timeout');
+        }
     } else {
         return view('/dailyreport/nomember');
     }
@@ -102,3 +106,7 @@ route::delete('/user_projects/{user_project}', function (UserProject $user_proje
     $user_project->delete();
     return redirect('/settings');
 });
+
+
+Route::get('/timeout', 'App\Http\Controllers\TimeoutController@timeout');
+Route::post('/timeout/store', 'App\Http\Controllers\TimeoutController@store');

@@ -42,6 +42,8 @@ class SendController extends Controller
                     $userIdNames[] = $userIdName;
                     $userIdName = [];
                 }
+            } else {
+                return redirect('/timeout');
             }
             return view('/send/member', [
                 'settings' => $settings,
