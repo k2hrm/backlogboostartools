@@ -34,14 +34,6 @@ class SettingsController extends Controller
             $outputitems = Outputitem::where('user_id', Auth::user()->id)->get();
             $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
             $userIdNames = [];
-            foreach ($user_projects as $user_project) {
-                if (!empty($user_project->asignee_id)) {
-                    $userIdName[] = $user_project->asignee_id;
-                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
-                }
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
-            }
             return view('/settings/list', [
                 'settings' => $settings,
                 'outputitems' => $outputitems,
@@ -76,7 +68,7 @@ class SettingsController extends Controller
         $settings = Setting::where('user_id', $user_id)->first();
         $outputitems = Outputitem::where('user_id', $user_id)->first();
         $user_projects = UserProject::where('user_id', $user_id)->get();
-        return view('settings/edit', compact('settings', 'outputitems', 'user_projects'));
+        return view('settings/edit', compact('settings', 'outputitems', 'user_projects', 'request'));
     }
 
     public function confirm(Request $request)
@@ -112,7 +104,6 @@ class SettingsController extends Controller
         }
         $settings->user_id = $request->user_id;
         $settings->hostname = $request->hostname;
-        $settings->api_key = $request->api_key;
         $settings->bl_user_id = $request->bl_user_id;
         $settings->save();
 

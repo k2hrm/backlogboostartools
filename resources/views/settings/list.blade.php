@@ -23,10 +23,6 @@
                 <td>{{$setting->hostname}}</td>
             </tr>
             <tr>
-                <th>APIキー</th>
-                <td>{{$setting->api_key}}</td>
-            </tr>
-            <tr>
                 <th>プロジェクト</th>
                 <td>
                     @if($user_projects)

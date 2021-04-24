@@ -27,10 +27,6 @@
                 <td><input type="text" name="hostname" class="form-control" value="@if($settings) {{$settings->hostname}} @endif"></td>
               </tr>
               <tr>
-                <th>APIキー</th>
-                <td><input type="text" name="api_key" class="form-control" value="@if($settings) {{$settings->api_key}} @endif"></td>
-              </tr>
-              <tr>
                 <th>プロジェクト</th>
                 <td>
                   @if($user_projects)
@@ -61,6 +57,10 @@
                   <input type="checkbox" name="vip_updated" id="vip_updated" value="vip_updated" @if($outputitems && $outputitems->vip_updated) checked @endif>更新日</label>
                   <input type="checkbox" name="vip_createdUser" id="vip_createdUser" value="vip_createdUser" @if($outputitems && $outputitems->vip_createdUser) checked @endif><label for="vip_createdUser">登録者</label>
                 </td>
+              </tr>
+              <tr>
+                <th>APIキー(※保存されません)</th>
+                <td><input type="text" name="api_key" class="form-control" value="@if($request) {{$request->api_key}} @endif"></td>
               </tr>
             </table>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">

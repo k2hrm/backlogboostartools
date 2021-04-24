@@ -28,10 +28,6 @@
                 <td><input type="hidden" name="hostname" class="form-control" value="@if($request) {{$request->hostname}} @endif">{{$request->hostname}}</td>
               </tr>
               <tr>
-                <th>APIキー</th>
-                <td><input type="hidden" name="api_key" class="form-control" value="@if($request) {{$request->api_key}} @endif">{{$request->api_key}}</td>
-              </tr>
-              <tr>
                 <th>プロジェクト</th>
                 <td>
                   @for($i=0;$i<count($request->project_keys_old);$i++)
@@ -70,6 +66,7 @@
               </tr>
             </table>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="api_key" class="form-control" value="@if($request) {{$request->api_key}} @endif">
           </div>
         </div>
         <div class="form-group">
