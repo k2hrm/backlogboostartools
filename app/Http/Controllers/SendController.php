@@ -113,16 +113,16 @@ class SendController extends Controller
         $summary = $request->title;
         $description = $request->description;
         $hostname = $request->hostname;
-        $apiKey = $request->api_key;
+        $api_key = Cookie::get('api_key');
 
         if ($projKeysArr) {
             for ($i = 0; $i <= count($projKeysArr) - 1; $i++) {
-                $projId = $this->getProjectIdFromKey(trim($projKeysArr[$i]), $hostname, $apiKey);
+                $projId = $this->getProjectIdFromKey(trim($projKeysArr[$i]), $hostname, $api_key);
                 $params = array(
                     'summary' => $summary,
                     'description' => $description,
                     'projectId'       => $projId,
-                    'issueTypeId'     => $this->getIssueIdFromProjId($projId, $hostname, $apiKey),
+                    'issueTypeId'     => $this->getIssueIdFromProjId($projId, $hostname, $api_key),
                     'priorityId'      => 4,
                     'assigneeId' => trim($asigneeIdsArr[$i])
                 );
@@ -134,7 +134,7 @@ class SendController extends Controller
                         'ignore_errors' => true
                     )
                 );
-                $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $apiKey . '&' . http_build_query($params, '', '&');
+                $url = 'https://' . $hostname . '/api/v2/issues?apiKey=' . $api_key . '&' . http_build_query($params, '', '&');
 
                 $response = file_get_contents($url, false, stream_context_create($context));
             }
@@ -147,10 +147,11 @@ class SendController extends Controller
         if (Auth::check()) {
             $settings = Setting::where('user_id', Auth::user()->id)->get();
             $user_projects = UserProject::where('user_id', Auth::user()->id)->get();
+            $api_key = Cookie::get('api_key');
             foreach ($user_projects as $user_project) {
                 if (!empty($user_project->asignee_id)) {
                     $userIdName[] = $user_project->asignee_id;
-                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $settings[0]->api_key);
+                    $userIdName[] = $this->getUserNameFromId($user_project->asignee_id, $settings[0]->hostname, $api_key);
                 }
                 $userIdNames[] = $userIdName;
                 $userIdName = [];

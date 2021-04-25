@@ -46,11 +46,6 @@
             </td>
           </tr>
           <tr>
-            <th>APIキー</th>
-            <td><input type="hidden" name="api_key" value="{{$request->api_key}}">{{$request->api_key}}
-            </td>
-          </tr>
-          <tr>
             <th>ホスト名</th>
             <td><input type="hidden" name="hostname" value="{{$request->hostname}}">{{$request->hostname}}
             </td>
