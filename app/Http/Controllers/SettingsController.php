@@ -111,6 +111,7 @@ class SettingsController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $validator = Validator::make($request->all(), [
             'hostname' => 'required|max:255',
         ]);

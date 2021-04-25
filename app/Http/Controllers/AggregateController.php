@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AggregateController extends Controller
 {
@@ -255,6 +257,30 @@ class AggregateController extends Controller
         return view('aggregate/result', compact('issueKeyAndHoursArrs', 'proj_key', 'from_date', 'to_date'));
         //dd($result);
         //dd($totalHours);
+    }
+
+    public function csv(Request $request)
+    {
+        $now = Carbon::now();
+        $response = new StreamedResponse(
+            function () use ($request) {
+                $stream = fopen('php://output', 'w');
+                if ($request->result) {
+                    foreach ($request->result as $line) {
+                        mb_convert_variables('SJIS-win', 'UTF-8', $line);
+                        fputcsv($stream, $line);
+                    }
+                }
+                fclose($stream);
+            },
+            \Illuminate\Http\Response::HTTP_OK,
+            [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename=' . $now->format('YmdHis') . '.csv',
+            ]
+        );
+
+        return $response;
     }
 
 

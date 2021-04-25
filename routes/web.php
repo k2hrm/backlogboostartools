@@ -99,6 +99,8 @@ Route::get('/contact', function () {
 });
 
 Route::post('/aggregate/result', 'App\Http\Controllers\AggregateController@result');
+Route::post('/aggregate/csv', 'App\Http\Controllers\AggregateController@csv');
+
 Route::post('/send/result', 'App\Http\Controllers\SendController@result');
 Route::post('/dailyreport/result', 'App\Http\Controllers\DailyReportController@result');
 Route::post('/dailyreport/refresh', 'App\Http\Controllers\DailyReportController@refresh');

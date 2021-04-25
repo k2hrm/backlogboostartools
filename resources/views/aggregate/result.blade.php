@@ -28,6 +28,15 @@
                 @endif
                 @endforeach
             </table>
+            <form action="{{ url('aggregate/csv') }}" method="POST" class="form-horizontal">
+                @csrf
+                @for($i=0; $i < count($issueKeyAndHoursArrs); $i++) @for($j=0; $j <count($issueKeyAndHoursArrs[$i]); $j++) <input type="hidden" name="result[{{$i}}][{{$j}}]" value={{$issueKeyAndHoursArrs[$i][$j]}}>
+                    @endfor
+                    @endfor
+                    <button type="submit" class="btn btn-primary">
+                        CSVダウンロード
+                    </button>
+            </form>
             <p><a class="btn btn-primary" href="../aggregate/">戻る</a></p>
         </div>
     </div>
