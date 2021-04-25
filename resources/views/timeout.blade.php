@@ -4,7 +4,7 @@
 @section('content')
 <div class="container toppage">
     <div class="row justify-content-center">
-        セッションがタイムアウトしました。APIキーを入力してください。
+        セッションがタイムアウトしました。BacklogのAPIキーを入力してください。
         <form action="{{ url('timeout/store') }}" method="POST" class="form-horizontal">
             @csrf
             <input type="text" name="api_key">
