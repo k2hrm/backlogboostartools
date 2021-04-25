@@ -111,7 +111,6 @@ class SettingsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $validator = Validator::make($request->all(), [
             'hostname' => 'required|max:255',
         ]);
@@ -194,6 +193,16 @@ class SettingsController extends Controller
         }
 
         $outputitems->save();
+
+        if ($request->project_keys_old > 0) {
+            for ($i = 0; $i < count($request->project_keys_old); $i++) {
+                $user_projects_old = UserProject::find($request->user_project_ids[$i]);
+                $user_projects_old->project_key = $request->project_keys_old[$i];
+                $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
+                $user_projects_old->save();
+            }
+        }
+
         if ($request->project_keys) {
             foreach ($request->project_keys as $pkey) {
                 $user_projects = new UserProject;
@@ -206,18 +215,6 @@ class SettingsController extends Controller
                 }
             }
         }
-
-        if ($request->user_project_ids > 0) {
-            if ($request->user_project_ids[0] != null) {
-                for ($i = 0; $i <= count($request->user_project_ids) - 1; $i++) {
-                    $user_projects_old = UserProject::find($request->user_project_ids[$i]);
-                    $user_projects_old->project_key = $request->project_keys_old[$i];
-                    $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
-                    $user_projects_old->save();
-                }
-            }
-        }
-
         return redirect('/settings');
     }
 }
