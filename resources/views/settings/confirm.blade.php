@@ -30,6 +30,7 @@
               <tr>
                 <th>プロジェクト</th>
                 <td>
+                  @if($request->project_keys_old)
                   @for($i=0;$i<count($request->project_keys_old);$i++)
                     <ul>
                       <li>キー: <input type="hidden" name="project_keys_old[]" value="{{$request->project_keys_old[$i]}}">{{$request->project_keys_old[$i]}}
@@ -46,7 +47,26 @@
                       </li>
                     </ul>
                     @endfor
-                    <ul id="user_projects"></ul>
+                    @endif
+                    @if($request->project_keys)
+                    @for($i=0;$i<count($request->project_keys);$i++)
+                      <ul>
+                        <li>キー: <input type="hidden" name="project_keys[]" value="{{$request->project_keys[$i]}}">{{$request->project_keys[$i]}}
+                          <input type="hidden" name="user_project_ids[]" value="{{$request->user_project_ids[$i]}}">
+                          <input type="hidden" name="asignee_ids[]" value="{{$request->asignee_ids[$i]}}">
+                        </li>
+                        <li>担当者: {{$request->asignee_ids[$i]}}
+                          @foreach($userIdNames as $userIdName)
+                          @if($request->asignee_ids[$i] == $userIdName[0])
+                          {{$userIdName[1]}}
+                          @break
+                          @endif
+                          @endforeach
+                        </li>
+                      </ul>
+                      @endfor
+                      @endif
+                      <ul id="user_projects"></ul>
                 </td>
               </tr>
               <tr>

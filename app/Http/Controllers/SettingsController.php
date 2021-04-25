@@ -82,14 +82,27 @@ class SettingsController extends Controller
         $api_key = Cookie::get('api_key');
         if ($api_key) {
             $userIdNames = [];
-            foreach ($request->asignee_ids_old as $asignee_id_old) {
-                if (!empty($asignee_id_old)) {
-                    $userIdName[] = $asignee_id_old;
-                    $userIdName[] = $this->getUserNameFromId($asignee_id_old, $request->hostname, $api_key);
+            if ($request->asignee_ids_old < 0) {
+                foreach ($request->asignee_ids_old as $asignee_id_old) {
+                    if (!empty($asignee_id_old)) {
+                        $userIdName[] = $asignee_id_old;
+                        $userIdName[] = $this->getUserNameFromId($asignee_id_old, $request->hostname, $api_key);
+                    }
+                    $userIdNames[] = $userIdName;
+                    $userIdName = [];
                 }
-                $userIdNames[] = $userIdName;
-                $userIdName = [];
             }
+            if ($request->asignee_ids < 0) {
+                foreach ($request->asignee_ids as $asignee_id) {
+                    if (!empty($asignee_id)) {
+                        $userIdName[] = $asignee_id;
+                        $userIdName[] = $this->getUserNameFromId($asignee_id, $request->hostname, $api_key);
+                    }
+                    $userIdNames[] = $userIdName;
+                    $userIdName = [];
+                }
+            }
+
             return view('settings/confirm', compact('userIdNames', 'request'));
         } else {
             return redirect('timeout');
@@ -194,11 +207,13 @@ class SettingsController extends Controller
         }
 
         if ($request->user_project_ids > 0) {
-            for ($i = 0; $i <= count($request->user_project_ids) - 1; $i++) {
-                $user_projects_old = UserProject::find($request->user_project_ids[$i]);
-                $user_projects_old->project_key = $request->project_keys_old[$i];
-                $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
-                $user_projects_old->save();
+            if ($request->user_project_ids[0] != null) {
+                for ($i = 0; $i <= count($request->user_project_ids) - 1; $i++) {
+                    $user_projects_old = UserProject::find($request->user_project_ids[$i]);
+                    $user_projects_old->project_key = $request->project_keys_old[$i];
+                    $user_projects_old->asignee_id = $request->asignee_ids_old[$i];
+                    $user_projects_old->save();
+                }
             }
         }
 
