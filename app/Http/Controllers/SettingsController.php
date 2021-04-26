@@ -205,13 +205,15 @@ class SettingsController extends Controller
 
         if ($request->project_keys) {
             foreach ($request->project_keys as $pkey) {
-                $user_projects = new UserProject;
-                $user_projects->project_key = $pkey;
+                if ($pkey !== null) {
+                    $user_projects = new UserProject;
+                    $user_projects->project_key = $pkey;
 
-                foreach ($request->asignee_ids as $aid) {
-                    $user_projects->asignee_id = $aid;
-                    $user_projects->user_id = $request->user_id;
-                    $user_projects->save();
+                    foreach ($request->asignee_ids as $aid) {
+                        $user_projects->asignee_id = $aid;
+                        $user_projects->user_id = $request->user_id;
+                        $user_projects->save();
+                    }
                 }
             }
         }
