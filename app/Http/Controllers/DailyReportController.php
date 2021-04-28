@@ -77,7 +77,7 @@ class DailyReportController extends Controller
 
         $issues = [];
         foreach ($json as $value) {
-            if ($value["type"] == '8' || $value["type"] == '5') { //ファイルのアップロード(type=8) Wikiの更新(type=5)は除外
+            if ($value["type"] == '8' || $value["type"] == '5' || $value["type"] == '6') { //ファイルのアップロード(type=8) Wikiの更新(type=5)は除外
             } else {
                 if (
                     $value["created"] >= $tgt_day_from &&
