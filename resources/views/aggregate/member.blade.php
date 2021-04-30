@@ -66,6 +66,9 @@
                 }
                 ?>
               </select>
+              （自動指定
+              <input type="button" value="今月" onclick="setThisMonth()" name="今月">
+              <input type="button" value="先月" onclick="setLastMonth()" name="先月">）
             </td>
           </tr>
           <tr>
