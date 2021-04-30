@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -60,7 +61,12 @@ class AggregateController extends Controller
         $vip_fileShared = $request->vip_fileShared;
         $proj_id = $this->getProjectIdFromKey($proj_key, $hostname, $apiKey);
         $from_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
+        $from_date_jst = new DateTime($from_date);
+        $from_date_jst->setTime(00, 00, 00);
         $to_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $tomonth, $today, $toyear));
+        $to_date_jst = new DateTime($to_date);
+        $to_date_jst->setTime(23, 59, 59);
+        date_default_timezone_set("Asia/Tokyo");
         $from_date_for_api = date('Y-m-d', mktime(0, 0, 0, $frommonth, $fromday, $fromyear));
         Cookie::queue('api_key', $request->api_key, 10);
         $cnt = 0;
@@ -151,18 +157,21 @@ class AggregateController extends Controller
         array_push($csvHeader, "実績時間集計結果(h)");
         array_push($issueKeyAndHoursArrs, $csvHeader);
         foreach ($result as $value) {
-            if ($value["updated"] >= $from_date) {
+            $created = new DateTime($value["created"]);
+            $updated = new DateTime($value["updated"]);
+            date_default_timezone_set("Asia/Tokyo");
+            if ($updated >= $from_date_jst) {
                 if (
-                    $value["created"] >= $from_date
-                    && $value["updated"] <= $to_date
+                    $created >= $from_date_jst
+                    && $updated <= $to_date_jst
                 ) {
                     if ($value["actualHours"]) {
                         $actualHours = $value["actualHours"];
                     }
                 } else {
-                    $actualHours = $this->getMonthlyHours($value["issueKey"], $from_date, $to_date, $apiKey, $hostname);
+                    $actualHours = $this->getMonthlyHours($value["issueKey"], $from_date_jst, $to_date_jst, $apiKey, $hostname);
                 }
-                if ($value["created"] <= $to_date && $value["created"] >= $from_date || $actualHours > 0) {
+                if ($created <= $to_date_jst && $created >= $from_date_jst || $actualHours > 0) {
                 }
             }
 
@@ -284,7 +293,7 @@ class AggregateController extends Controller
     }
 
 
-    function getMonthlyHours($issueKey, $from_date, $to_date, $apiKey, $hostname)
+    function getMonthlyHours($issueKey, $from_date_jst, $to_date_jst, $apiKey, $hostname)
     {
         $cnt = 0;
         while (1) {
@@ -313,8 +322,9 @@ class AggregateController extends Controller
         }
         $hoursInMonthTotal = 0;
         foreach ($json as $value) {
-            $cnt = 0;
-            if ($value["updated"] >= $from_date && $value["updated"] <= $to_date) {
+            $updated = new DateTime($value["updated"]);
+            date_default_timezone_set("Asia/Tokyo");
+            if ($updated >= $from_date_jst && $updated <= $to_date_jst) {
                 foreach ($value["changeLog"] as $changeLog) {
                     if ($changeLog["field"] === "actualHours") {
                         $hoursInMonth = number_format($changeLog["newValue"], 2) - number_format($changeLog["originalValue"], 2);
@@ -332,7 +342,6 @@ class AggregateController extends Controller
         $result = array();
 
         while (1) {
-            $offset = $cnt * 100;
             $headers = array('Content-Type:application/x-www-form-urlencoded');
             $context = array(
                 'http' => array(
