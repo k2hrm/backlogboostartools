@@ -9,60 +9,64 @@
       <p>プロジェクトごとの指定期間内での作業実績時間を集計します。<a href="{{ url('manuals/aggregate') }}">使い方</a></p>
       <form action="{{ url('aggregate/result') }}" method="POST" class="form-horizontal">
         @csrf
-        <p>
-          <label for="check_flex">期間指定</label>
-          :
-          <select name="periodyearfrom">
-            <?php
-            $thisyear = date('Y');
-            $lastyear = date('Y', strtotime('-1 year'));
-            $nextyear = date('Y', strtotime('+1 year'));
-            echo '<option value="' . $lastyear . '">' . $lastyear . '</option>';
-            echo '<option value="' . $thisyear . '" selected>' . $thisyear . '</option>';
-            echo '<option value="' . $nextyear . '">' . $nextyear . '</option>';
-            ?>
-          </select>
-          <select name="periodmonthfrom">
-            <?php
-            for ($i = 1; $i <= 12; $i++) {
-              echo '<option value="' . $i . '">' . $i . '</option>';
-            }
-            ?>
-          </select>
-          <select name="perioddayfrom">
-            <?php
-            for ($i = 1; $i <= 31; $i++) {
-              echo '<option value="' . $i . '">' . $i . '</option>';
-            }
-            ?>
-          </select>
-          ～
-          <select name="periodyearto">
-            <?php
-            $thisyear = date('Y');
-            $lastyear = date('Y', strtotime('-1 year'));
-            $nextyear = date('Y', strtotime('+1 year'));
-            echo '<option value="' . $lastyear . '">' . $lastyear . '</option>';
-            echo '<option value="' . $thisyear . '" selected>' . $thisyear . '</option>';
-            echo '<option value="' . $nextyear . '">' . $nextyear . '</option>';
-            ?>
-          </select>
-          <select name="periodmonthto">
-            <?php
-            for ($i = 1; $i <= 12; $i++) {
-              echo '<option value="' . $i . '">' . $i . '</option>';
-            }
-            ?>
-          </select>
-          <select name="perioddayto">
-            <?php
-            for ($i = 1; $i <= 31; $i++) {
-              echo '<option value="' . $i . '">' . $i . '</option>';
-            }
-            ?>
-          </select>
-        </p>
         <table style="margin-bottom: 20px;">
+          <tr>
+            <th>集計期間</th>
+            <td>
+              <select name="periodyearfrom">
+                <?php
+                $thisyear = date('Y');
+                $lastyear = date('Y', strtotime('-1 year'));
+                $nextyear = date('Y', strtotime('+1 year'));
+                echo '<option value="' . $lastyear . '">' . $lastyear . '</option>';
+                echo '<option value="' . $thisyear . '" selected>' . $thisyear . '</option>';
+                echo '<option value="' . $nextyear . '">' . $nextyear . '</option>';
+                ?>
+              </select>
+              <select name="periodmonthfrom">
+                <?php
+                for ($i = 1; $i <= 12; $i++) {
+                  echo '<option value="' . $i . '">' . $i . '</option>';
+                }
+                ?>
+              </select>
+              <select name="perioddayfrom">
+                <?php
+                for ($i = 1; $i <= 31; $i++) {
+                  echo '<option value="' . $i . '">' . $i . '</option>';
+                }
+                ?>
+              </select>
+              ～
+              <select name="periodyearto">
+                <?php
+                $thisyear = date('Y');
+                $lastyear = date('Y', strtotime('-1 year'));
+                $nextyear = date('Y', strtotime('+1 year'));
+                echo '<option value="' . $lastyear . '">' . $lastyear . '</option>';
+                echo '<option value="' . $thisyear . '" selected>' . $thisyear . '</option>';
+                echo '<option value="' . $nextyear . '">' . $nextyear . '</option>';
+                ?>
+              </select>
+              <select name="periodmonthto">
+                <?php
+                for ($i = 1; $i <= 12; $i++) {
+                  echo '<option value="' . $i . '">' . $i . '</option>';
+                }
+                ?>
+              </select>
+              <select name="perioddayto">
+                <?php
+                for ($i = 1; $i <= 31; $i++) {
+                  echo '<option value="' . $i . '">' . $i . '</option>';
+                }
+                ?>
+              </select>
+              （自動指定
+              <input type="button" value="今月" onclick="setThisMonth()" name="今月">
+              <input type="button" value="先月" onclick="setLastMonth()" name="先月">）
+            </td>
+          </tr>
           <tr>
             <th>プロジェクトキー</th>
             <td><input type="text" name="proj_key"></li>

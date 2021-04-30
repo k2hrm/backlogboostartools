@@ -18,3 +18,24 @@ function check() {
         return false; // 送信を中止
     }
 }
+
+
+function setThisMonth() {
+    var thismonth = new Date();
+    var month = thismonth.getMonth() + 1;
+    var thismonthend = new Date(thismonth.getFullYear(), thismonth.getMonth() + 1, 0);
+    var thismonthendmonth = thismonthend.getMonth() + 1;
+    var thismonthendday = thismonthend.getDate();
+    document.getElementsByName('periodmonthfrom')[0].value = month;
+    document.getElementsByName('perioddayfrom')[0].value = 1;
+    document.getElementsByName('periodmonthto')[0].value = thismonthendmonth;
+    document.getElementsByName('perioddayto')[0].value = thismonthendday;
+}
+function setLastMonth() {
+    var thismonth = new Date();
+    var lastmonth = new Date(thismonth.getFullYear(), thismonth.getMonth(), 0)
+    document.getElementsByName('periodmonthfrom')[0].value = lastmonth.getMonth() + 1;
+    document.getElementsByName('perioddayfrom')[0].value = 1;
+    document.getElementsByName('periodmonthto')[0].value = lastmonth.getMonth() + 1;
+    document.getElementsByName('perioddayto')[0].value = lastmonth.getDate();
+}
