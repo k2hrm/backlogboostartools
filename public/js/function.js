@@ -26,6 +26,8 @@ function setThisMonth() {
     var thismonthend = new Date(thismonth.getFullYear(), thismonth.getMonth() + 1, 0);
     var thismonthendmonth = thismonthend.getMonth() + 1;
     var thismonthendday = thismonthend.getDate();
+    document.getElementsByName('periodyearfrom')[0].value = thismonth.getFullYear();
+    document.getElementsByName('periodyearto')[0].value = thismonth.getFullYear();
     document.getElementsByName('periodmonthfrom')[0].value = month;
     document.getElementsByName('perioddayfrom')[0].value = 1;
     document.getElementsByName('periodmonthto')[0].value = thismonthendmonth;
@@ -34,6 +36,8 @@ function setThisMonth() {
 function setLastMonth() {
     var thismonth = new Date();
     var lastmonth = new Date(thismonth.getFullYear(), thismonth.getMonth(), 0)
+    document.getElementsByName('periodyearfrom')[0].value = lastmonth.getFullYear();
+    document.getElementsByName('periodyearto')[0].value = lastmonth.getFullYear();
     document.getElementsByName('periodmonthfrom')[0].value = lastmonth.getMonth() + 1;
     document.getElementsByName('perioddayfrom')[0].value = 1;
     document.getElementsByName('periodmonthto')[0].value = lastmonth.getMonth() + 1;
